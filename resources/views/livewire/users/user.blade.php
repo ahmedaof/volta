@@ -5,6 +5,13 @@
     @include('livewire.users.create')
     @include('livewire.users.edit')
 
+    {{-- search input--}}
+    <div class="form-group">
+        <input wire:model="search" type="text" class="form-control" placeholder="Search User...">
+    </div>
+
+
+
     <table class="table table-bordered">
         <thead>
             <tr>
