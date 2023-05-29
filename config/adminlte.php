@@ -298,11 +298,18 @@ return [
         // Sidebar items:
 
         [
-            // measure
             'text' => 'Dashboard',
             'url'  => '/dashboard',
             
         ],
+
+            // user
+
+        [
+            'text' => 'User',
+            'url'  => '/dashboard/user',
+            'icon' => 'fas fa-fw fa-user',
+        ]
       
     ],
 
