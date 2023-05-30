@@ -65,10 +65,6 @@ class="modal fade show @if ($createModal) d-block @endif" role="dialog" id="moda
                 @error('password_confirmation') <span class="text-danger">{{ $message }}</span> @enderror
 
             </div>
-
-
-        
-
                   <div class="modal-footer">
                       <button wire:click="saveUser"class="btn btn-primary">
                            Save

@@ -7,17 +7,37 @@
     @if (session()->has('success'))
     <div class="alert alert-success">{{ session('success') }}</div>
     @endif
+
+    {{--  show flash message --}}
+    
     
     {{-- button to import excell with input type file --}}
     <div class="flex justify-center row">
         <div class="col-md-1 mt-5 mb-5">
+            <button wire:click="export" class="btn btn-primary">Export</button>
+        </div>
+        <div class="col-md-1 mt-5 mb-5">
             <button wire:click="import" class="btn btn-primary">Import</button>
         </div>
-        <div class="col-md-4 mt-5 mb-5">
+        <div class="col-md-8 mt-5 mb-5">
             <input type="file" wire:model="file">
         </div>
 
+     
+        {{-- create --}}
+        <div class="col-md-1 mt-5 mb-5">
+            <button wire:click="createShowModal()" class="btn btn-info">Create</button>
+        </div>
+
     </div>
+
+    @include('livewire.stock.create')
+    @include('livewire.stock.edit')
+    
+
+    {{-- export --}}
+
+
 
     {{-- search products --}}
 
@@ -36,6 +56,7 @@
                 <th>available quantity</th>
                 <th>Price</th>
                 <th>Discount</th>
+                <th>action</th>
             
             </tr>
         </thead>
@@ -49,6 +70,10 @@
         <td>{{ $distribution->quantity }}</td>
         <td>{{ $distribution->abb_price }}</td>
         <td>{{ $distribution->abb_discount ?? 0}}</td>
+        <td>
+            <button wire:click="edit({{ $distribution->id }})" class="btn btn-primary btn-sm">Edit</button>
+            <button wire:click="delete({{ $distribution->id }})" class="btn btn-danger btn-sm">Delete</button>
+        </td>
  
         </tr>
         @endforeach

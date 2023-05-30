@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => '<b>Volta</b>Electric',
-    'logo_img' => asset('images/logo.jpeg'),
+    'logo_img' => './images/logo.jpeg',
     'logo_img_class' => 'brand-image elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -400,11 +400,11 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
                 ],
             ],

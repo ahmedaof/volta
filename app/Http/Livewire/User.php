@@ -79,6 +79,7 @@ class User extends Component
 
     public function closeModal(){
         $this->createModal = false ;
+        $this->updateModal = false ;
     }
 
     public function render()
