@@ -63,9 +63,9 @@ return [
     |
     */
 
-    'logo' => '<b>Volte</b>Electric',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => '<b>Volta</b>Electric',
+    'logo_img' => asset('images/logo.jpeg'),
+    'logo_img_class' => 'brand-image elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'Admin Logo',
@@ -86,7 +86,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            // 'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -109,7 +109,7 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            // 'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
             'width' => 60,
@@ -309,6 +309,12 @@ return [
             'text' => 'User',
             'url'  => '/dashboard/user',
             'icon' => 'fas fa-fw fa-user',
+        ],
+     
+        [
+            'text' => 'Distribution',
+            'url'  => '/dashboard/distribution',
+            'icon' => 'fas fa-fw fa-product',
         ]
       
     ],
