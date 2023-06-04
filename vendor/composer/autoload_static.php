@@ -602,6 +602,7 @@ class ComposerStaticInit2f88f9090be13bff4a62ca439bd09f0a
         'App\\Http\\Livewire\\Distripution' => __DIR__ . '/../..' . '/app/Http/Livewire/Distripution.php',
         'App\\Http\\Livewire\\MainProject' => __DIR__ . '/../..' . '/app/Http/Livewire/MainProject.php',
         'App\\Http\\Livewire\\Project' => __DIR__ . '/../..' . '/app/Http/Livewire/Project.php',
+        'App\\Http\\Livewire\\ProjectsShow' => __DIR__ . '/../..' . '/app/Http/Livewire/ProjectsShow.php',
         'App\\Http\\Livewire\\User' => __DIR__ . '/../..' . '/app/Http/Livewire/User.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',

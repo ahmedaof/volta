@@ -78,8 +78,51 @@
     {{-- button to add new row --}}
     <button wire:click.defer="addRow({{$i}})" class="btn btn-primary">Add New Product</button>
     {{-- table to show data --}}
-    @elseif($type == 'palets')
-    <h1>still under dev</h1>
+    @elseif($type == 'Panels')
+
+    {{-- number of Panels --}}
+    <div class="form-group">
+        <label for="panels">Number of Panels</label>
+        <input wire:model.lazy="panels" type="number" class="form-control" id="panels" placeholder="Enter number of panels">
+        @error('panels')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+
+    {{-- panel type --}}
+    <div class="form-group">
+        <label for="panel_type">Panel Type</label>
+        <select wire:model.lazy="panel_type" class="form-control select2-blue" id="panel_type">
+            <option value="">Select panel type</option>
+            @foreach($panel_Types as $panelType)
+            <option value="{{ $panelType }}">{{ $panelType }}</option>
+            @endforeach
+        </select>
+        @error('panel_type')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+
+    {{-- panel name --}}
+    <div class="form-group">
+        <label for="panel_name">Panel Name</label>
+        <input wire:model.lazy="panel_name" type="text" class="form-control" id="panel_name" placeholder="Enter panel name">
+        @error('panel_name')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+
+    {{-- offer number --}}
+    <div class="form-group">
+        <label for="offer_number">Offer Number</label>
+        <input wire:model.lazy="offer_number" type="text" class="form-control" id="offer_number" placeholder="Enter offer number">
+        @error('offer_number')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+
+    
+    
     @endif
 
     {{-- button to save --}}

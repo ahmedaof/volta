@@ -27,8 +27,14 @@ class Distripution extends Component
     {
         $this->resetPage();
     }
+    // listener
+    protected $listeners = [
+        'deleteAfter',
+      
+    ];
 
     // edit
+
 
     public function edit($id){
 
@@ -141,6 +147,25 @@ class Distripution extends Component
     // export
     public function export(){
         return Excel::download(new DistriputionProductExport(), 'distripution.xlsx');
+    }
+
+    // deleteAll
+    public function deleteAll(){
+    //    truncate casscades
+    
+    $this->dispatchBrowserEvent('swalDelete');
+
+
+    }
+
+    public function deleteAfter(){
+        $disOroducts = DistriputionProduct::get();
+        foreach ($disOroducts as $disOroduct) {
+            $disOroduct->delete();
+        }
+
+        // flash message
+        $this->dispatchBrowserEvent('success');
     }
     public function render()
     {

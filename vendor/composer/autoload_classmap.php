@@ -23,6 +23,7 @@ return array(
     'App\\Http\\Livewire\\Distripution' => $baseDir . '/app/Http/Livewire/Distripution.php',
     'App\\Http\\Livewire\\MainProject' => $baseDir . '/app/Http/Livewire/MainProject.php',
     'App\\Http\\Livewire\\Project' => $baseDir . '/app/Http/Livewire/Project.php',
+    'App\\Http\\Livewire\\ProjectsShow' => $baseDir . '/app/Http/Livewire/ProjectsShow.php',
     'App\\Http\\Livewire\\User' => $baseDir . '/app/Http/Livewire/User.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',

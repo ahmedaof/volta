@@ -10,14 +10,17 @@ use Livewire\Component;
 
 class Project extends Component
 {
-    public $project_Types = ['spare parts', 'palets'];
-    public $type = 'spare parts';
+    public $project_Types = ['spare parts', 'Panels'];
+    public $type = 'Panels';
     public $customers;
     public $customer;
     public $product_Id;
     public $quantity;
     public $notes;
     public $name;
+    public $panels;
+    public $panel_Types = ['ABB', 'Schneider'];
+    public $panel_Type ;
     public $products = [];
 
     public $inputs = [];

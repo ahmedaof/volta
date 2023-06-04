@@ -8,9 +8,9 @@
     <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    {{--  show flash message --}}
-    
-    
+    {{-- show flash message --}}
+
+
     {{-- button to import excell with input type file --}}
     <div class="flex justify-center row">
         <div class="col-md-1 mt-5 mb-5">
@@ -19,21 +19,23 @@
         <div class="col-md-1 mt-5 mb-5">
             <button wire:click="import" class="btn btn-primary">Import</button>
         </div>
-        <div class="col-md-8 mt-5 mb-5">
+        <div class="col-md-5 mt-5 mb-5">
             <input type="file" wire:model="file">
         </div>
 
-     
+
         {{-- create --}}
-        <div class="col-md-1 mt-5 mb-5">
-            <button wire:click="createShowModal()" class="btn btn-info">Create</button>
+        <div class="col-md-3 mt-5 mb-5 row">
+            <button wire:click="createShowModal()" class="btn btn-info col-md-6">Create</button>
+            {{-- delete all data --}}
+            <button wire:click="deleteAll()" class="btn btn-danger col-md-6">Delete All</button>
         </div>
 
     </div>
 
     @include('livewire.stock.create')
     @include('livewire.stock.edit')
-    
+
 
     {{-- export --}}
 
@@ -57,26 +59,26 @@
                 <th>Price</th>
                 <th>Discount</th>
                 <th>action</th>
-            
+
             </tr>
         </thead>
         <tbody>
             @foreach($products as $distribution)
             <tr>
 
-        <td>{{ $distribution->abb_id }}</td>
-        <td>{{ $distribution->abb_description }}</td>
-        <td>{{ $distribution->family?->name ?? 'NA'}}</td>
-        <td>{{ $distribution->quantity }}</td>
-        <td>{{ $distribution->abb_price }}</td>
-        <td>{{ $distribution->abb_discount ?? 0}}</td>
-        <td>
-            <button wire:click="edit({{ $distribution->id }})" class="btn btn-primary btn-sm">Edit</button>
-            <button wire:click="delete({{ $distribution->id }})" class="btn btn-danger btn-sm">Delete</button>
-        </td>
- 
-        </tr>
-        @endforeach
+                <td>{{ $distribution->abb_id }}</td>
+                <td>{{ $distribution->abb_description }}</td>
+                <td>{{ $distribution->family?->name ?? 'NA'}}</td>
+                <td>{{ $distribution->quantity }}</td>
+                <td>{{ $distribution->abb_price }}</td>
+                <td>{{ $distribution->abb_discount ?? 0}}</td>
+                <td>
+                    <button wire:click="edit({{ $distribution->id }})" class="btn btn-primary btn-sm">Edit</button>
+                    <button wire:click="delete({{ $distribution->id }})" class="btn btn-danger btn-sm">Delete</button>
+                </td>
+
+            </tr>
+            @endforeach
         </tbody>
     </table>
     {{-- pagination --}}
@@ -86,22 +88,51 @@
         </div>
     </div>
 
+    <script>
+        window.addEventListener('swalDelete', function(e) {
+            Swal.fire({
+                title: 'Are you sure?'
+                , text: "You won't be able to revert this!"
+                , icon: 'warning'
+                , showCancelButton: true
+                , confirmButtonColor: '#3085d6'
+                , cancelButtonColor: '#d33'
+                , confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    livewire.emit('deleteAfter')
+                }
+            })
+        });
+        // sucess
+        window.addEventListener('success', function(e) {
+            Swal.fire(
+                'The products?'
+                , 'Deleted Successfully'
+            )
+        });
+
+    </script>
     <style>
-        body > div > div.content-wrapper > div > div > div > nav > div.hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between{
+        body>div>div.content-wrapper>div>div>div>nav>div.hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between {
             margin-top: 20px;
         }
-        body > div > div.content-wrapper > div > div > div > div:nth-child(3) > div > nav > div.hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between > div:nth-child(2) > span > a.relative.inline-flex.items-center.px-2.py-2.-ml-px.text-sm.font-medium.text-gray-500.bg-white.border.border-gray-300.rounded-r-md.leading-5.hover\:text-gray-400.focus\:z-10.focus\:outline-none.focus\:ring.ring-gray-300.focus\:border-blue-300.active\:bg-gray-100.active\:text-gray-500.transition.ease-in-out.duration-150 > svg{
+
+        body>div>div.content-wrapper>div>div>div>div:nth-child(3)>div>nav>div.hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between>div:nth-child(2)>span>a.relative.inline-flex.items-center.px-2.py-2.-ml-px.text-sm.font-medium.text-gray-500.bg-white.border.border-gray-300.rounded-r-md.leading-5.hover\:text-gray-400.focus\:z-10.focus\:outline-none.focus\:ring.ring-gray-300.focus\:border-blue-300.active\:bg-gray-100.active\:text-gray-500.transition.ease-in-out.duration-150>svg {
             width: 26px;
-        }
-        body > div > div.content-wrapper > div > div > div > div:nth-child(3) > div > nav > div.hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between > div:nth-child(2) > span > a.relative.inline-flex.items-center.px-2.py-2.text-sm.font-medium.text-gray-500.bg-white.border.border-gray-300.rounded-l-md.leading-5.hover\:text-gray-400.focus\:z-10.focus\:outline-none.focus\:ring.ring-gray-300.focus\:border-blue-300.active\:bg-gray-100.active\:text-gray-500.transition.ease-in-out.duration-150 > svg{
-            width: 26px;
-        }
-        body > div > div.content-wrapper > div > div > div > div:nth-child(3) > div > nav > div.hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between > div:nth-child(1) > p{
-            margin:20px
         }
 
-        svg{
+        body>div>div.content-wrapper>div>div>div>div:nth-child(3)>div>nav>div.hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between>div:nth-child(2)>span>a.relative.inline-flex.items-center.px-2.py-2.text-sm.font-medium.text-gray-500.bg-white.border.border-gray-300.rounded-l-md.leading-5.hover\:text-gray-400.focus\:z-10.focus\:outline-none.focus\:ring.ring-gray-300.focus\:border-blue-300.active\:bg-gray-100.active\:text-gray-500.transition.ease-in-out.duration-150>svg {
+            width: 26px;
+        }
+
+        body>div>div.content-wrapper>div>div>div>div:nth-child(3)>div>nav>div.hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between>div:nth-child(1)>p {
+            margin: 20px
+        }
+
+        svg {
             width: 20px;
         }
+
     </style>
 </div>
