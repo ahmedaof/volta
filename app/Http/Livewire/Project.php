@@ -124,7 +124,7 @@ class Project extends Component
     public function render()
     {
 
-        $this->products = DistriputionProduct::get();
+        $this->products = DistriputionProduct::get(['abb_description', 'id']);
         return view('livewire.projects.project')->extends('adminlte::page');
     }
 }
