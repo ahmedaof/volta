@@ -316,6 +316,28 @@ return [
             'url'  => '/dashboard/distribution',
             'icon' => 'fas fa-fw fa-product',
         ]
+
+        // projects
+        ,[
+            'text' => 'Create Project',
+            'url'  => '/dashboard/projects',
+            'icon' => 'fas fa-fw fa-project-diagram',
+        ],
+
+        // show projects
+        [
+            'text' => 'Show Projects',
+            'url'  => '/dashboard/showprojects',
+            'icon' => 'fas fa-fw fa-project-diagram',
+        ],
+
+        // customers
+        [
+            'text' => 'Customers',
+            'url'  => '/dashboard/customers',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        
       
     ],
 
@@ -355,36 +377,36 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
             ],
         ],
         'Select2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
                 ],
             ],

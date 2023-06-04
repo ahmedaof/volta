@@ -1,8 +1,12 @@
 
 <?php
 
+use App\Http\Livewire\Customers;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Distripution;
+use App\Http\Livewire\MainProject;
+use App\Http\Livewire\Project;
+use App\Http\Livewire\ProjectsShow;
 use App\Http\Livewire\User;
 use Illuminate\Support\Facades\Route;
 
@@ -13,4 +17,17 @@ Route::get('/', Dashboard::class)->name('dashboard');
 Route::get('/user', User::class)->name('user');
 // distribution
 Route::get('/distribution', Distripution::class)->name('distribution');
+// projects
+Route::get('/projects', Project::class)->name('projects');
+
+// customers
+Route::get('/customers', Customers::class)->name('customers');
+
+// showprojects
+Route::get('/showprojects', MainProject::class)->name('showprojects');
+
+// ProjectsShow
+Route::get('/ProjectsShow/{project_id}', ProjectsShow::class)->name('projects.show');
+
+
 });
