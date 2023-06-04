@@ -32,6 +32,8 @@ class Project extends Component
     {
 
         $this->customers = Customer::all();
+
+        $this->products = DistriputionProduct::get(['abb_description', 'id']);
     }
 
     public function addRow($i)
@@ -124,7 +126,6 @@ class Project extends Component
     public function render()
     {
 
-        $this->products = DistriputionProduct::get(['abb_description', 'id']);
         return view('livewire.projects.project')->extends('adminlte::page');
     }
 }
