@@ -15,6 +15,7 @@
         @enderror
     </div>
 
+
     {{-- project name --}}
     <div class="form-group">
         <label for="name">Project name</label>
@@ -80,125 +81,159 @@
     {{-- table to show data --}}
     @elseif($type == 'Panels')
 
-    {{-- number of Panels --}}
+    {{-- panel_number --}}
+
     <div class="form-group">
-        <label for="panels">Number of Panels</label>
-        <input wire:model.lazy="panels" type="number" class="form-control" id="panels" placeholder="Enter number of panels">
-        @error('panels')
+        <label for="panel_number">Panel Number</label>
+        <input wire:model.lazy="panel_number" type="text" class="form-control" id="panel_number" placeholder="Enter panel number">
+        @error('panel_number')
         <span class="text-danger">{{ $message }}</span>
         @enderror
     </div>
 
-    {{-- panel type --}}
-    <div class="form-group">
-        <label for="panel_type">Panel Type</label>
-        <select wire:model.lazy="panel_type" class="form-control select2-blue" id="panel_type">
-            <option value="">Select panel type</option>
-            @foreach($panel_Types as $panelType)
-            <option value="{{ $panelType }}">{{ $panelType }}</option>
-            @endforeach
-        </select>
-        @error('panel_type')
-        <span class="text-danger">{{ $message }}</span>
-        @enderror
-    </div>
 
-    {{-- panel name --}}
-    <div class="form-group">
-        <label for="panel_name">Panel Name</label>
-        <input wire:model.lazy="panel_name" type="text" class="form-control" id="panel_name" placeholder="Enter panel name">
-        @error('panel_name')
-        <span class="text-danger">{{ $message }}</span>
-        @enderror
-    </div>
+    @if($panel_number != null)
+    @for($i = 0; $i < $panel_number; $i++) <div class="row">
+        <div class="form-group col-md-3">
 
-    {{-- offer number --}}
-    <div class="form-group">
-        <label for="offer_number">Offer Number</label>
-        <input wire:model.lazy="offer_number" type="text" class="form-control" id="offer_number" placeholder="Enter offer number">
-        @error('offer_number')
-        <span class="text-danger">{{ $message }}</span>
-        @enderror
-    </div>
+            <label for="panel_type">Panel Type</label>
+            <select wire:model.lazy="panel_type.{{ $i }}" class="form-control select2-blue" id="panel_type">
+                <option value="">Select panel type</option>
+                @foreach($panel_Types as $panelType)
+                <option value="{{ $panelType->id }}">{{ $panelType->type }}</option>
+                @endforeach
+            </select>
+            @error('panel_type')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
 
-    
-    
-    @endif
+        </div>
 
-    {{-- button to save --}}
-    <div class="row justify-content-center">
-        <button wire:click.prevent="save" class="btn btn-primary">Save</button>
-    </div>
 
-    {{-- select2 --}}
+        {{-- panel name --}}
+        <div class="form-group col-md-3">
+            <label for="panel_name">Panel Name</label>
+            <input wire:model.lazy="panel_name.{{ $i }}" type="text" class="form-control" id="panel_name" placeholder="Enter panel name">
+            @error('panel_name')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
 
-    <script>
-        $(document).ready(function() {
-            window.initSelectProductDrop = () => {
-                $('.js-example-basic-single{{ $i }}').select2({
-                    placeholder: 'Select a Product'
-                    , allowClear: true
-                });
-            }
+        {{-- quantity --}}
+        <div class="form-group col-md-3">
+            <label for="panel_quantity">Quantity</label>
+            <input wire:model.lazy="panel_quantity.{{ $i }}" type="number" class="form-control" id="panel_quantity" placeholder="Enter quantity">
+            @error('panel_quantity')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+
+        {{-- volte --}}
+
+        <div class="form-group col-md-3">
+            <label for="panel_volte">Volte</label>
+            <input wire:model.lazy="panel_volte.{{ $i }}" type="number" class="form-control" id="panel_volte" placeholder="Enter volte">
+            @error('panel_volte')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+</div>
+
+@endfor
+
+@endif
+
+{{-- panel type --}}
+{{-- panel type --}}
+
+
+
+{{-- add tabs button --}}
+
+{{-- @include('livewire.projects.create') --}}
+
+{{-- <div class="row">
+        <button wire:click.prevent="addTab" class="btn btn-primary">Add Tab</button>
+    </div> --}}
+
+@endif
+
+
+{{-- button to save --}}
+<div class="row justify-content-center">
+    <button wire:click.prevent="save" class="btn btn-primary">Save</button>
+</div>
+
+{{-- select2 --}}
+
+<script>
+    $(document).ready(function() {
+        window.initSelectProductDrop = () => {
+            $('.js-example-basic-single{{ $i }}').select2({
+                placeholder: 'Select a Product'
+                , allowClear: true
+            });
+        }
+        initSelectProductDrop();
+        $('.js-example-basic-single{{ $i }}').on('change', function(e) {
+            console.log(e.target);
+            livewire.emit('selectedProductItem', e.target.value)
+        });
+        window.livewire.on('select2', () => {
             initSelectProductDrop();
-            $('.js-example-basic-single{{ $i }}').on('change', function(e) {
-                console.log(e.target);
-                livewire.emit('selectedProductItem', e.target.value)
-            });
-            window.livewire.on('select2', () => {
-                initSelectProductDrop();
-            });
-
-            window.initSelectCustomerDrop = () => {
-                $('.js-example-basic-single').select2({
-                    placeholder: 'Select a Customer'
-                    , allowClear: true
-                });
-            }
-            initSelectCustomerDrop();
-            $('.js-example-basic-single').on('change', function(e) {
-                console.log(e.target);
-                livewire.emit('selectedCustomerItem', e.target.value)
-            });
-            window.livewire.on('select2', () => {
-                initSelectCustomerDrop();
-            });
-
         });
 
-    </script>
-    <style>
-        body>div>div.content-wrapper>div>div>div>div.Added>div>div.form-group.col-md-6>span>span.selection>span,
-        .select2-selection,
-        select2-selection--single,
-        body>div>div.content-wrapper>div>div>div>div:nth-child(4)>span>span.selection>span ,body > div > div.content-wrapper > div > div > div > div:nth-child(8) > div:nth-child(1) > span > span.selection > span{
-            height: 41px;
+        window.initSelectCustomerDrop = () => {
+            $('.js-example-basic-single').select2({
+                placeholder: 'Select a Customer'
+                , allowClear: true
+            });
         }
+        initSelectCustomerDrop();
+        $('.js-example-basic-single').on('change', function(e) {
+            console.log(e.target);
+            livewire.emit('selectedCustomerItem', e.target.value)
+        });
+        window.livewire.on('select2', () => {
+            initSelectCustomerDrop();
+        });
 
-        #select2-product_Id-container,
-        /* #select2-customer-container, */
-        #select2-sel2Category-container {
-            display: block;
-            width: 100%;
-            height: calc(2.25rem + 2px);
-            padding: 0.375rem 0.75rem;
-            font-size: 1rem;
-            font-weight: 400;
-            line-height: 1.5;
-            color: #495057;
-            background-color: #fff;
-            background-clip: padding-box;
-            border: 1px solid #ced4da;
-            border-radius: 0.25rem;
-            box-shadow: inset 0 0 0 transparent;
-            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-        }
+    });
 
-        body>span>span>span.select2-results {
-            max-height: 500px;
-            overflow-y: scroll;
-        }
+</script>
+<style>
+    body>div>div.content-wrapper>div>div>div>div.Added>div>div.form-group.col-md-6>span>span.selection>span,
+    .select2-selection,
+    select2-selection--single,
+    body>div>div.content-wrapper>div>div>div>div:nth-child(4)>span>span.selection>span,
+    body>div>div.content-wrapper>div>div>div>div:nth-child(8)>div:nth-child(1)>span>span.selection>span {
+        height: 41px;
+    }
 
-    </style>
+    #select2-product_Id-container,
+    /* #select2-customer-container, */
+    #select2-sel2Category-container {
+        display: block;
+        width: 100%;
+        height: calc(2.25rem + 2px);
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        box-shadow: inset 0 0 0 transparent;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    body>span>span>span.select2-results {
+        max-height: 500px;
+        overflow-y: scroll;
+    }
+
+</style>
 
 </div>

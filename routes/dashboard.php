@@ -5,6 +5,8 @@ use App\Http\Livewire\Customers;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Distripution;
 use App\Http\Livewire\MainProject;
+use App\Http\Livewire\PanelsType;
+use App\Http\Livewire\Plans;
 use App\Http\Livewire\Project;
 use App\Http\Livewire\ProjectsShow;
 use App\Http\Livewire\User;
@@ -29,5 +31,9 @@ Route::get('/showprojects', MainProject::class)->name('showprojects');
 // ProjectsShow
 Route::get('/ProjectsShow/{project_id}', ProjectsShow::class)->name('projects.show');
 
+// panelstype
+Route::get('/panelstype', PanelsType::class)->name('panelstype');
 
+// panels 
+Route::get('/panels/{project_id}', Plans::class)->name('plans');
 });

@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Volta Electric',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -337,6 +337,14 @@ return [
             'url'  => '/dashboard/customers',
             'icon' => 'fas fa-fw fa-users',
         ],
+
+        // panelsType
+        [
+            'text'  => 'Panels Type',
+            'url'   => '/dashboard/panelstype',
+            'icon'  => 'fas fa-fw fa-th',
+        
+        ]
         
       
     ],

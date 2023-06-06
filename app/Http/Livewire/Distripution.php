@@ -169,6 +169,7 @@ class Distripution extends Component
     }
     public function render()
     {
+        
         $products = DistriputionProduct::where('abb_id', 'like', '%'.$this->search.'%')
         ->orWhere('abb_description', 'like', '%'.$this->search.'%')
         ->orWhere('quantity', 'like', '%'.$this->search.'%')
