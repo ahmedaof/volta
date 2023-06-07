@@ -148,13 +148,7 @@
 
 
 
-{{-- add tabs button --}}
 
-{{-- @include('livewire.projects.create') --}}
-
-{{-- <div class="row">
-        <button wire:click.prevent="addTab" class="btn btn-primary">Add Tab</button>
-    </div> --}}
 
 @endif
 

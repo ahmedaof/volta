@@ -14,4 +14,10 @@ class Panels extends Model
     {
         return $this->belongsTo(PanelsTypes::class, 'panels_type_id');
     }
+
+    // tabs
+    public function tabs()
+    {
+        return $this->hasMany(Tab::class,'panel_id');
+    }
 }

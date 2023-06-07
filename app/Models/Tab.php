@@ -13,7 +13,9 @@ class Tab extends Model
 
     public function distripution_product()
     {
-        return $this->belongsToMany(DistriputionProduct::class, 'distributed_product_tabs', 'tab_id', 'distripution_product_id');
+        // pivot
+        return $this->belongsToMany(DistriputionProduct::class, 'distributed_product_tabs', 'tab_id', 'distripution_product_id', 'id', 'id') // pivot table name is distributed_product_tabs
+            ->withPivot('quantity');
     }
 
 

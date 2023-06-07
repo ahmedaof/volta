@@ -31,18 +31,7 @@ class Project extends Component
     public $panel_Types;
     public $panel_type;
     public $products = [];
-    //     public $tabs = ['incomming', 'outgoing' , 'additionals'
-    //     ,'sub incomming 1' , 'sub outgoing 1'
-    //     ,'sub incomming 2' , 'sub outgoing 2'
-    //     ,'sub incomming 3' , 'sub outgoing 3'
-    //     ,'sub incomming 4' , 'sub outgoing 4'
-    //     ,'sub incomming 5' , 'sub outgoing 5'
-    //     ,'sub incomming 6' , 'sub outgoing 6'
 
-    // ];
-    // public $tab;
-
-    // public $tabModel  = false ;
 
     public $inputs = [];
     public $i = 1;
@@ -61,38 +50,7 @@ class Project extends Component
     {
         // $this->tabModel = false;
     }
-    // public function saveTab(){
-    //     // validate
-    //     $this->validate([
-    //         'tab' => 'required',
-    //         'name' => 'required',
-    //         'type' => 'required',
-    //         'customer_id' => 'required',
-
-    //     ]);
-    //     $project = MainProject::create([
-    //         'name' => $this->name,
-    //         'type' => $this->type,
-    //         'customer_id' => $this->customer_id,
-    //         'notes' => $this->notes,
-    //     ]);
-    //    $tab = Tab::create([
-    //         'name' => $this->tab,
-    //         'main_project_id' => $project->id,
-    //     ]);
-    //     foreach ($this->product_Id as $key => $value) {
-    //         $tab->distripution_product()->attach([$value => ['quantity' => $this->quantity[$key]]]);
-    //     }
-    //     $this->product_Id = [];
-    //     $this->tab_id [] = $tab->id;
-    //     $this->quantity = [];
-    //     // $inputs
-    //     $this->inputs = [];
-    //     $this->i = 1;
-    //     $this->tab = '';
-    //     $this->closemodal();
-
-    // }
+   
     public function mount()
     {
 
@@ -152,6 +110,18 @@ class Project extends Component
     public function save()
     {
 
+        $customer = Customer::find($this->customer_id);
+
+        $spacePosition = strpos($customer->name, ' '); 
+
+        if ($spacePosition !== false) { // If a space is found
+            $charAfterSpace = substr($customer->name, $spacePosition + 1, 1); // Extract the character after the space
+         // Output: "W"
+        }
+
+        $customer_name= substr($customer->name, 0, 1) . $charAfterSpace;
+
+         $offer_number = 'VE' . ModelsProject::count() + 1 .$customer_name. date('m')  .'-'. date('y')  ;
 
         $main =   MainProject::create([
 
@@ -159,6 +129,7 @@ class Project extends Component
             'type' => $this->type,
             'customer_id' => $this->customer_id,
             'notes' => $this->notes,
+            'offer_number' => $offer_number,
         ]);
 
         if ($this->type == 'Panels') {

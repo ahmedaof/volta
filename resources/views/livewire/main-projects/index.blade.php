@@ -1,9 +1,22 @@
 <div>
+    {{-- href to create project --}}
+
+
+    <a href="{{ route('projects') }}" class="btn btn-info float-right mt-3 mb-3">Create New Project</a>
+   
+    {{-- button showcustomers --}}
     {{-- show projects table --}}
+
+    {{-- search --}}
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search" wire:model="searchTerm" />
+    </div>
     <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">Project Name</th>
+                {{-- offer_number --}}
+                <th scope="col">Offer Number</th>
                 <th scope="col">Project Note</th>
                 <th scope="col">Project Status</th>
                 <th scope="col">Customer</th>
@@ -16,7 +29,9 @@
             @foreach ($projects as $project)
                 <tr>
                     <td>{{ $project->name }}</td>
+                    <td>{{ $project->offer_number }}</td>
                     <td>{{ $project->notes }}</td>
+
                     <td>{{ $project->status }}</td>
                     <td>{{ $project->customer->name }}</td>
                     <td>{{ $project->created_at }}</td>
@@ -26,6 +41,12 @@
                         <button wire:click="delete({{ $project->id }})" class="btn btn-sm btn-danger">Delete</button>
                         {{-- a href to show --}}
                         <a href="{{ route('projects.show', $project->id) }}" class="btn btn-sm btn-success">Show</a>
+
+                        {{-- download Technical offer --}}
+                        <button wire:click="download({{ $project->id }})" class="btn btn-sm btn-info">Download</button>
+                        
+
+                        
                     </td>
                 </tr>
             @endforeach

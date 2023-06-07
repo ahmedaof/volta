@@ -315,14 +315,14 @@ return [
             'text' => 'Distribution',
             'url'  => '/dashboard/distribution',
             'icon' => 'fas fa-fw fa-product',
-        ]
+        ],
 
         // projects
-        ,[
-            'text' => 'Create Project',
-            'url'  => '/dashboard/projects',
-            'icon' => 'fas fa-fw fa-project-diagram',
-        ],
+        // ,[
+        //     'text' => 'Create Project',
+        //     'url'  => '/dashboard/projects',
+        //     'icon' => 'fas fa-fw fa-project-diagram',
+        // ],
 
         // show projects
         [
