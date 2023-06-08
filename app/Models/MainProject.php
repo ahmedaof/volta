@@ -16,4 +16,16 @@ class MainProject extends Model
     {
         return $this->belongsTo(Customer::class);
     }
+
+    // project
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
+
+    // pannels
+    public function panels()
+    {
+        return $this->hasMany(Panels::class);
+    }
 }

@@ -17,6 +17,8 @@
                 <th scope="col">Project Name</th>
                 {{-- offer_number --}}
                 <th scope="col">Offer Number</th>
+                {{-- type --}}
+                <th scope="col">Project type</th>
                 <th scope="col">Project Note</th>
                 <th scope="col">Project Status</th>
                 <th scope="col">Customer</th>
@@ -30,6 +32,7 @@
                 <tr>
                     <td>{{ $project->name }}</td>
                     <td>{{ $project->offer_number }}</td>
+                    <td>{{ $project->type }}</td>
                     <td>{{ $project->notes }}</td>
 
                     <td>{{ $project->status }}</td>
