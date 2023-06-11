@@ -121,6 +121,9 @@ class Project extends Component
 
         $customer_name= substr(auth()->user()->name, 0, 1) . $charAfterSpace;
 
+        // customer name to capital
+        $customer_name = strtoupper($customer_name);
+
          $offer_number = 'VE' . ModelsProject::count() + 1 .$customer_name. date('m')  .'-'. date('y')  ;
 
         $main =   MainProject::create([
