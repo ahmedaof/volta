@@ -112,14 +112,14 @@ class Project extends Component
 
         $customer = Customer::find($this->customer_id);
 
-        $spacePosition = strpos($customer->name, ' '); 
+        $spacePosition = strpos(auth()->user()->name, ' '); 
 
         if ($spacePosition !== false) { // If a space is found
-            $charAfterSpace = substr($customer->name, $spacePosition + 1, 1); // Extract the character after the space
+            $charAfterSpace = substr(auth()->user()->name, $spacePosition + 1, 1); // Extract the character after the space
          // Output: "W"
         }
 
-        $customer_name= substr($customer->name, 0, 1) . $charAfterSpace;
+        $customer_name= substr(auth()->user()->name, 0, 1) . $charAfterSpace;
 
          $offer_number = 'VE' . ModelsProject::count() + 1 .$customer_name. date('m')  .'-'. date('y')  ;
 
