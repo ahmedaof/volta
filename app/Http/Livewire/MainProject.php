@@ -31,7 +31,7 @@ class MainProject extends Component
         // Get the buffered output and clear the buffer
     
         return response()->streamDownload(function () {
-            PDF::Output('technical-offer.pdf', 'I');
+            PDF::Output('technical-offer.pdf', 'D');
         }, 'technical-offer.pdf');
     }
 
