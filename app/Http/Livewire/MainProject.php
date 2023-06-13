@@ -23,7 +23,7 @@ class MainProject extends Component
             fn () => print($pdfContent),
             "technical-offer.pdf"
         );
-       
+    
     }
 
     public function delete($id)

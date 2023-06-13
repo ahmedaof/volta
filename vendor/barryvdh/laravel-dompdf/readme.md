@@ -42,7 +42,11 @@ You can create a new DOMPDF instance and load a HTML string, file or view name. 
 
 or use the App container:
 
-
+```php
+    $pdf = App::make('dompdf.wrapper');
+    $pdf->loadHTML('<h1>Test</h1>');
+    return $pdf->stream();
+```
 
 Or use the facade:
 

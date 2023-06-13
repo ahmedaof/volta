@@ -32,7 +32,7 @@ class Pdf extends IlluminateFacade
      */
     protected static function getFacadeAccessor()
     {
-        // return 'dompdf.wrapper';
+        return 'dompdf.wrapper';
     }
 
     /**
