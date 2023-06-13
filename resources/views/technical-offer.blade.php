@@ -65,7 +65,7 @@
           padding-bottom: 10px;
         ">
             <div>
-                <img src="./images/logo.jpeg" alt="logo" style="max-width: 300px" />
+                <img src="{{ asset('./images/logo.jpeg') }}" alt="logo" style="max-width: 300px" />
                 <h3 class="text-uppercase" style="margin-top: 15px; margin-bottom: 10px">
                     low and medium voltage panels
                 </h3>
