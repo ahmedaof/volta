@@ -61,9 +61,9 @@ class ServiceProvider extends IlluminateServiceProvider
         });
         $this->app->alias('dompdf', Dompdf::class);
 
-        $this->app->bind('dompdf.wrapper', function ($app) {
-            return new PDF($app['dompdf'], $app['config'], $app['files'], $app['view']);
-        });
+        // $this->app->bind('dompdf.wrapper', function ($app) {
+        //     return new PDF($app['dompdf'], $app['config'], $app['files'], $app['view']);
+        // });
     }
 
     /**
@@ -89,6 +89,6 @@ class ServiceProvider extends IlluminateServiceProvider
      */
     public function provides(): array
     {
-        return ['dompdf', 'dompdf.options', 'dompdf.wrapper'];
+        return ['dompdf', 'dompdf.options'];
     }
 }
