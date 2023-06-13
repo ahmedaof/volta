@@ -1,6 +1,12 @@
 <div>
     {{-- href to create project --}}
-
+{{-- message session --}}
+@if (session()->has('message'))
+<div class="alert alert-success">
+    {{ session('message') }}
+</div>
+@endif
+    {{-- button create project --}}
 
     <a href="{{ route('projects') }}" class="btn btn-info float-right mt-3 mb-3">Create New Project</a>
    
@@ -40,7 +46,6 @@
                     <td>{{ $project->created_at }}</td>
                     <td>{{ $project->updated_at }}</td>
                     <td>
-                        <button wire:click="edit({{ $project->id }})" class="btn btn-sm btn-primary">Edit</button>
                         <button wire:click="delete({{ $project->id }})" class="btn btn-sm btn-danger">Delete</button>
                         {{-- a href to show --}}
                         <a href="{{ route('projects.show', $project->id) }}" class="btn btn-sm btn-success">Show</a>

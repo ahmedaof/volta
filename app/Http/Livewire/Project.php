@@ -110,7 +110,6 @@ class Project extends Component
     public function save()
     {
 
-        $customer = Customer::find($this->customer_id);
 
         $spacePosition = strpos(auth()->user()->name, ' '); 
 
@@ -124,7 +123,7 @@ class Project extends Component
         // customer name to capital
         $customer_name = strtoupper($customer_name);
 
-         $offer_number = 'VE' . ModelsProject::count() + 1 .$customer_name. date('m')  .'-'. date('y')  ;
+         $offer_number = 'VE' . MainProject::count() + 1 . $customer_name . date('m')  .'-'. date('y')  ;
 
         $main =   MainProject::create([
 

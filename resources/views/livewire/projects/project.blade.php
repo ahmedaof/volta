@@ -131,8 +131,8 @@
         {{-- volte --}}
 
         <div class="form-group col-md-3">
-            <label for="panel_volte">Volte</label>
-            <input wire:model.lazy="panel_volte.{{ $i }}" type="number" class="form-control" id="panel_volte" placeholder="Enter volte">
+            <label for="panel_volte">Amper</label>
+            <input wire:model.lazy="panel_volte.{{ $i }}" type="number" class="form-control" id="panel_volte" placeholder="Enter Amper">
             @error('panel_volte')
             <span class="text-danger">{{ $message }}</span>
             @enderror

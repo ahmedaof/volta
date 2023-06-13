@@ -5,7 +5,7 @@
                 <th>Panel Type</th>
                 <th>Panel Name</th>
                 <th>Quantity</th>
-                <th>Volte</th>
+                <th>ِAmper</th>
                 <th>Action</th>
             </tr>
         </thead>
