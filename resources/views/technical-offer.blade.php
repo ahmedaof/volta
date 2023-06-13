@@ -79,7 +79,7 @@
 
         <div style="
           padding: 15px 20px;
-          text-align: center;
+          text-align: center;   
           background-color: #d6e3bc;
           margin-top: 40px;
         ">
