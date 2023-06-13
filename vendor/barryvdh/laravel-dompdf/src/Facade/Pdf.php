@@ -30,7 +30,10 @@ class Pdf extends IlluminateFacade
      *
      * @return string
      */
-
+    protected static function getFacadeAccessor()
+    {
+        return '\Barryvdh\DomPDF\PDF';
+    }
 
     /**
      * Resolve a new instance
