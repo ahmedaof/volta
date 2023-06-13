@@ -23,17 +23,7 @@ class MainProject extends Component
             fn () => print($pdfContent),
             "technical-offer.pdf"
         );
-        // $view = \App::make("technical-offer",compact('user' , 'project'));
-
-        // $pdf = App::make('dompdf.wrapper');
-        // $pdf->loadHTML('<h1>Test</h1>');
-        // return $pdf->stream();
-
-        // // Get the buffered output and clear the buffer
-
-        // return response()->streamDownload(function () {
-        //     PDF::Output('technical-offer.pdf', 'D');
-        // }, 'technical-offer.pdf');
+       
     }
 
     public function delete($id)
