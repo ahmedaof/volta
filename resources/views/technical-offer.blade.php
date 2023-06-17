@@ -12,7 +12,7 @@
         }
 
         body {
-            font-family: DejaVu Sans, sans-serif , Arial, Helvetica ;
+            font-family: DejaVu Sans, sans-serif, Arial, Helvetica;
         }
 
         * {
@@ -64,22 +64,26 @@
           border-bottom: 1px solid #333;
           padding-bottom: 10px;
         ">
-            <div>
-                <img src="{{ asset('./images/logo.jpeg') }}" alt="logo" style="max-width: 300px" />
+            <div style="width: 70%; float: left">
+                <img src="./images/logo.jpeg" alt="logo" style="max-width: 300px" />
                 <h3 class="text-uppercase" style="margin-top: 15px; margin-bottom: 10px">
                     low and medium voltage panels
                 </h3>
                 <h4 class="" style="color: #467481">TECHNICAL offer</h4>
             </div>
 
-            {{-- <div class="col-md-2"> 
-                <img src="./images/abb.png" alt="logo" style="max-width: 200px" />
-            </div> --}}
+            <div class="col-md-2" style="
+            width: 30%;
+            float: right;
+            margin-top: -170px;
+          ">
+                <img src="./images/abb.png" alt="logo" style="max-width: 150px" />
+            </div>
         </div>
 
         <div style="
           padding: 15px 20px;
-          text-align: center;   
+          text-align: center;
           background-color: #d6e3bc;
           margin-top: 40px;
         ">
@@ -87,6 +91,10 @@
                 technical offer
             </h1>
         </div>
+
+        @php
+        $Arabic = new \ArPHP\I18N\Arabic();
+        @endphp
 
         <!-- first table  -->
         <table style="
@@ -105,7 +113,7 @@
             </tr>
             <tr>
                 <td>Project Name</td>
-                <td>{{ $project->name  }}</td>
+                <td>{{$Arabic->standard($project->name) }}</td>
             </tr>
             <tr>
                 <td>Client</td>

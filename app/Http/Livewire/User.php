@@ -78,6 +78,7 @@ class User extends Component
     }
 
     public function closeModal(){
+        return redirect(request()->header('Referer'));
         $this->createModal = false ;
         $this->updateModal = false ;
     }

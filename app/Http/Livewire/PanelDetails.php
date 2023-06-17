@@ -47,6 +47,7 @@ class PanelDetails extends Component
     // closemodal
     public function closemodal()
     {
+        return redirect(request()->header('Referer'));
         $this->tabModel = false;
     }
 
@@ -106,6 +107,12 @@ class PanelDetails extends Component
         
 
      }
+
+    //  back
+    public function back(){
+        $panel = Panels::find($this->panel_id);
+        return redirect()->route('plans', $panel->main_project_id);
+    }
     public function render()
     {
         $panel = Panels::find($this->panel_id);

@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\MainProject as ModelsMainProject;
 use Livewire\Component;
-use Barryvdh\DomPDF\Facade\Pdf;
+use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf as PDF;
 
 class MainProject extends Component
 {
@@ -14,16 +14,17 @@ class MainProject extends Component
 
     public function download($project_id)
     {
+        
 
         $project = ModelsMainProject::find($project_id);
 
         $user = auth()->user();
-        $pdfContent = PDF::loadView('technical-offer', compact('user' , 'project'))->output();
-        return response()->streamDownload(
-            fn () => print($pdfContent),
-            "technical-offer.pdf"
-        );
-        
+        $pdfContent = PDF::loadView('technical-offer', compact('user' , 'project'));
+         
+        return response()->streamDownload(function ()  use ($pdfContent) {
+            $pdfContent->stream('technical-offer');
+        }, 'technical-offer.pdf');
+
     
     }
 

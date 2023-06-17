@@ -18,6 +18,7 @@ class PanelsType extends Component
 
     public function closemodal()
     {
+        return redirect(request()->header('Referer'));
         $this->createModal = false;
         $this->updateModal = false;
     }
@@ -43,7 +44,7 @@ class PanelsType extends Component
             'Mounting' => $this->Mounting,
         ]);
 
-        $this->createModal = false;
+        $this->closemodal();
     }
 
     // edit
@@ -76,7 +77,7 @@ class PanelsType extends Component
             'Mounting' => $this->Mounting,
         ]);
 
-        $this->updateModal = false;
+        $this->closemodal();
     }
 
     // delete

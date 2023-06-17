@@ -4,6 +4,7 @@
 use App\Http\Livewire\Customers;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Distripution;
+use App\Http\Livewire\Family;
 use App\Http\Livewire\MainProject;
 use App\Http\Livewire\PanelDetails;
 use App\Http\Livewire\PanelStatisics;
@@ -44,4 +45,7 @@ Route::get('/PanelDetails/{panel_id}', PanelDetails::class)->name('PanelDetails'
 
 // panelStatisics
 Route::get('/panelStatisics/{tab_id}', PanelStatisics::class)->name('panelStatisics');
+
+// families
+Route::get('/families',Family::class)->name('families');
 });

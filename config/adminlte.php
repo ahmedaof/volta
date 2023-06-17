@@ -326,7 +326,7 @@ return [
 
         // show projects
         [
-            'text' => 'Show Projects',
+            'text' => 'Projects',
             'url'  => '/dashboard/showprojects',
             'icon' => 'fas fa-fw fa-project-diagram',
         ],
@@ -344,7 +344,14 @@ return [
             'url'   => '/dashboard/panelstype',
             'icon'  => 'fas fa-fw fa-th',
         
-        ]
+        ],
+        // families
+        [
+            'text'  => 'Families',
+            'url'   => '/dashboard/families',
+            'icon'  => 'fas fa-fw fa-users',
+        
+        ],
         
       
     ],

@@ -65,7 +65,10 @@ class Customers extends Component
 
     public function saveCustomer()
     {
-        $this->validate();
+        $this->validate([
+            'name' => 'required | unique:customers,name',
+            'vat' => 'required | unique:customers,vat_number',
+        ]);
         Customer::create([
             'name' => $this->name,
             'vat_number' => $this->vat,
@@ -92,6 +95,7 @@ class Customers extends Component
 
     public function closemodal()
     {
+        return redirect(request()->header('Referer'));
         $this->createModal = false;
         $this->updateModal = false;
     }

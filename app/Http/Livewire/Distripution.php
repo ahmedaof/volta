@@ -92,6 +92,7 @@ class Distripution extends Component
 
     // closeModel
     public function closemodal(){
+        return redirect(request()->header('Referer'));
         $this->createModal = false;
         $this->updateModal = false;
     }
@@ -106,6 +107,10 @@ class Distripution extends Component
         //     'family_id' => 'required',
         //     'discount' => 'required',
         // ]);
+
+        $this->validate([
+            'abb_description' => 'required | unique:distripution_products,abb_description',
+        ]);
 
         DistriputionProduct::create([
             'abb_id' => $this->abb_id,
@@ -144,6 +149,8 @@ class Distripution extends Component
         Excel::import(new DistriputionProductImport, $this->file);
         return redirect()->route('distribution');
     }
+
+    
     // export
     public function export(){
         return Excel::download(new DistriputionProductExport(), 'distripution.xlsx');

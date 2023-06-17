@@ -26,24 +26,24 @@
         <thead>
             <tr>
                 {{-- customer --}}
-                <th>Id</th>
-                <th>Name</th>
+                <th>#</th>
+                <th>Company Name</th>
                 <th>Phone</th>
                 <th>Vat Number</th>
-                <th>Company Name</th>
+                <th>Name</th>
 
 
             </tr>
         </thead>
         <tbody>
-            @foreach($customers as $customer)
+            @foreach($customers as  $key => $customer)
             <tr>
-                <td>{{ $customer->id }}</td>
-                <td>{{ $customer->name }}</td>
+                <td>{{ $key + 1}}</td>
+                <td>{{ $customer->company_name }}</td>
                 <td>{{ $customer->phone }}</td>
                 <td>{{ $customer->vat_number }}</td>
-                <td>{{ $customer->company_name }}</td>
-
+                <td>{{ $customer->name }}</td>
+                
                 <td>
                     <button wire:click="edit({{ $customer->id }})" class="btn btn-primary btn-sm">Edit</button>
                     <button wire:click="delete({{ $customer->id }})" class="btn btn-danger btn-sm">Delete</button>

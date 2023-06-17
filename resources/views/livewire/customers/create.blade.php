@@ -11,13 +11,14 @@ class="modal fade show @if ($createModal) d-block @endif" role="dialog" id="moda
           <div class="modal-body">
              
 
-
             <div class="form-group">
-                <label for="name">Name</label>
-                <input wire:model="name" type="text" class="form-control" id="name" placeholder="Enter Name">
+                <label for="company_name">Company Name</label>
+                <input wire:model="company_name" type="text" class="form-control" id="company_name" placeholder="Enter Company Name">
 
-                @error('name') <span class="text-danger">{{ $message }}</span> @enderror
+                @error('company_name') <span class="text-danger">{{ $message }}</span> @enderror
+
             </div>
+          
 
             <div class="form-group">
                 <label for="vat">VAT</label>
@@ -29,15 +30,14 @@ class="modal fade show @if ($createModal) d-block @endif" role="dialog" id="moda
 
             {{-- company_name --}}
 
+        
+
             <div class="form-group">
-                <label for="company_name">Company Name</label>
-                <input wire:model="company_name" type="text" class="form-control" id="company_name" placeholder="Enter Company Name">
+                <label for="name">Name</label>
+                <input wire:model="name" type="text" class="form-control" id="name" placeholder="Enter Name">
 
-                @error('company_name') <span class="text-danger">{{ $message }}</span> @enderror
-
+                @error('name') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
-
-            
 
             <div class="form-group">
                 <label for="phone">Phone</label>

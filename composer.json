@@ -6,11 +6,11 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
-        "barryvdh/laravel-dompdf": "^2.0",
-        "elibyy/tcpdf-laravel": "^10.0",
+        "carlos-meneses/laravel-mpdf": "^2.1",
         "guzzlehttp/guzzle": "^7.2",
         "huddledigital/zendesk-laravel": "^3.8",
         "jeroennoten/laravel-adminlte": "^3.8",
+        "khaled.alshamaa/ar-php": "^6.3",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",

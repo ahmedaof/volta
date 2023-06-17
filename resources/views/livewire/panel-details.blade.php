@@ -103,8 +103,12 @@
 
     @include('livewire.projects.create')
 
-    <div class="row justify-content-end">
-        <button wire:click.prevent="addTab" class="btn btn-info">Add Tab one By one</button>
+
+    <div class="row justify-content-end mt-3 mb-3">
+        {{-- button to return to bannel --}}
+        <button wire:click="back" class="btn btn-primary mr-3">Back To Panel</button>
+        {{-- button to add tabs --}}
+        <button wire:click.prevent="addTab" class="btn btn-info ">Add Tab one By one</button>
     </div>
     <script>
         $(document).ready(function() {
