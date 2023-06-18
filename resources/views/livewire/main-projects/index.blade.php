@@ -42,7 +42,7 @@
                     <td>{{ $project?->notes }}</td>
 
                     <td>{{ $project?->status }}</td>
-                    <td>{{ $project?->customer->name }}</td>
+                    <td>{{ $project?->customer?->name }}</td>
                     <td>{{ $project?->created_at }}</td>
                     <td>{{ $project?->updated_at }}</td>
                     <td>
