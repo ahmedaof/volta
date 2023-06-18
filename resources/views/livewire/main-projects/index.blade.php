@@ -36,22 +36,22 @@
         <tbody>
             @foreach ($projects as $project)
                 <tr>
-                    <td>{{ $project->name }}</td>
-                    <td>{{ $project->offer_number }}</td>
-                    <td>{{ $project->type }}</td>
-                    <td>{{ $project->notes }}</td>
+                    <td>{{ $project?->name }}</td>
+                    <td>{{ $project?->offer_number }}</td>
+                    <td>{{ $project?->type }}</td>
+                    <td>{{ $project?->notes }}</td>
 
-                    <td>{{ $project->status }}</td>
-                    <td>{{ $project->customer->name }}</td>
-                    <td>{{ $project->created_at }}</td>
-                    <td>{{ $project->updated_at }}</td>
+                    <td>{{ $project?->status }}</td>
+                    <td>{{ $project?->customer->name }}</td>
+                    <td>{{ $project?->created_at }}</td>
+                    <td>{{ $project?->updated_at }}</td>
                     <td>
-                        <button wire:click="delete({{ $project->id }})" class="btn btn-sm btn-danger">Delete</button>
+                        <button wire:click="delete({{ $project?->id }})" class="btn btn-sm btn-danger">Delete</button>
                         {{-- a href to show --}}
-                        <a href="{{ route('projects.show', $project->id) }}" class="btn btn-sm btn-success">Show</a>
+                        <a href="{{ route('projects.show', $project?->id) }}" class="btn btn-sm btn-success">Show</a>
 
                         {{-- download Technical offer --}}
-                        <button wire:click="download({{ $project->id }})" class="btn btn-sm btn-info">Download</button>
+                        <button wire:click="download({{ $project?->id }})" class="btn btn-sm btn-info">Download</button>
                         
 
                         
