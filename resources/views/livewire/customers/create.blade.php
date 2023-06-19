@@ -22,9 +22,9 @@ class="modal fade show @if ($createModal) d-block @endif" role="dialog" id="moda
 
             <div class="form-group">
                 <label for="vat">VAT</label>
-                <input wire:model="vat" type="text" class="form-control" id="vat" placeholder="Enter VAT Number">
+                <input wire:model="vat_number" type="text" class="form-control" id="vat" placeholder="Enter VAT Number">
 
-                @error('vat') <span class="text-danger">{{ $message }}</span> @enderror
+                @error('vat_number') <span class="text-danger">{{ $message }}</span> @enderror
 
             </div>
 

@@ -23,7 +23,7 @@ class MainProject extends Component
          
         return response()->streamDownload(function ()  use ($pdfContent) {
             $pdfContent->stream('technical-offer');
-        }, 'technical-offer.pdf');
+        }, $project->offer_number.'.pdf');
 
     
     }

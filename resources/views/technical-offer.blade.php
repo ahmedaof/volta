@@ -117,7 +117,7 @@
             </tr>
             <tr>
                 <td>Client</td>
-                <td>{{ $project->customer->name   }}</td>
+                <td>{{ $project->customer?->name   }}</td>
             </tr>
         </table>
 

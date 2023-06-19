@@ -15,7 +15,7 @@ use Livewire\Component;
 class Project extends Component
 {
     public $project_Types = ['spare parts', 'Panels'];
-    public $type = 'Panels';
+    public $type;
     public $customers;
     public $panel_number;
     public $customer;
@@ -135,6 +135,13 @@ class Project extends Component
         ]);
 
         if ($this->type == 'Panels') {
+            $this->validate([
+                'panel_number' => 'required',
+                'panel_name' => 'required',
+                'panel_type' => 'required',
+                'panel_quantity' => 'required',
+                'panel_volte' => 'required',
+            ]);
             foreach ($this->panel_type as $key => $value) {
             $this->createPanel($main , $key);
             }

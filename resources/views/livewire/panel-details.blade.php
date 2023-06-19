@@ -41,11 +41,12 @@
                         @endforeach
                     </td>
                     <td>
-                        {{-- <button wire:click="edit({{ $panel->id }})" class="btn btn-primary btn-sm">Edit</button> --}}
+                        <button wire:click="edit({{ $tab->id }})" class="btn btn-primary btn-sm">Edit</button>
                         {{-- a href to show  --}}
 
                         <a href="{{ route('panelStatisics', $tab->id) }}" class="btn btn-primary btn-sm">Show</a>
                     
+
 
                         <button wire:click="delete({{ $tab->id }})" class="btn btn-danger btn-sm">Delete</button>
                     </td>
@@ -102,6 +103,7 @@
     {{-- add tabs button --}}
 
     @include('livewire.projects.create')
+    @include('livewire.edit-tabs')
 
 
     <div class="row justify-content-end mt-3 mb-3">

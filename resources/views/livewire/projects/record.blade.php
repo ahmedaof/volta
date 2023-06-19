@@ -4,8 +4,8 @@
         <label for="product">Select Product</label>
         <select label="Choose product" id="selectProduct.{{ $i }}"  class="js-example-basic-single{{ $i }} form-control">
             <option value="">Select product</option>
-            @foreach($products as $product)
-            <option i="{{ $product->id }}" {{ $product->id == $product_Id ? 'selected' : '' }}>{{ $product->abb_description }}</option>
+            @foreach($products as $key => $product)
+            <option i="{{ $product->id }}" {{ isset($product_Id[$i]) && $product->id == $product_Id[$i] ? 'selected' : '' }}>{{ $product->abb_description }}</option>
             @endforeach
         </select>
         @error("product_Id.$i")

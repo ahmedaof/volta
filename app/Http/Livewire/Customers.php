@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Customer;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Validation\Rule;
 
 class Customers extends Component
 {
@@ -16,7 +17,7 @@ class Customers extends Component
 
     public $customer_id;
     public $phone;
-    public $vat;
+    public $vat_number;
     public $company_name;
 
 
@@ -40,7 +41,7 @@ class Customers extends Component
     {
         $customer = Customer::find($id);
         $this->name = $customer->name;
-        $this->vat = $customer->vat_number;
+        $this->vat_number = $customer->vat_number;
         $this->company_name = $customer->company_name;
         $this->phone = $customer->phone;
         $this->customer_id = $customer->id;
@@ -53,7 +54,7 @@ class Customers extends Component
         $customer = Customer::find($this->customer_id);
         $customer->update([
             'name' => $this->name,
-            'vat_number' => $this->vat,
+            'vat_number' => $this->vat_number,
             'company_name' => $this->company_name,
             'phone' => $this->phone,
         ]);
@@ -66,12 +67,12 @@ class Customers extends Component
     public function saveCustomer()
     {
         $this->validate([
-            'name' => 'required | unique:customers,name',
-            'vat' => 'required | unique:customers,vat_number',
+            'name' => ['required', Rule::unique('customers')->whereNull('deleted_at')],
+            'vat_number' => ['required', Rule::unique('customers')->whereNull('deleted_at')],
         ]);
         Customer::create([
             'name' => $this->name,
-            'vat_number' => $this->vat,
+            'vat_number' => $this->vat_number,
             'company_name' => $this->company_name,
             'phone' => $this->phone,
 

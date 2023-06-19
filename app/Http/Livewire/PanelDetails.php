@@ -19,9 +19,11 @@ class PanelDetails extends Component
         'incomming', 'outgoing', 'additionals', 'sub incomming 1', 'sub outgoing 1', 'sub incomming 2', 'sub outgoing 2', 'sub incomming 3', 'sub outgoing 3', 'sub incomming 4', 'sub outgoing 4', 'sub incomming 5', 'sub outgoing 5', 'sub incomming 6', 'sub outgoing 6'
 
     ];
-    public $tab, $i = 1, $products, $product_Id, $quantity, $inputs = [] , $inputsTabs = [], $y = 1;
+    public $tab,$tab_id, $i = 1, $products, $product_Id, $quantity, $inputs = [] , $inputsTabs = [], $y = 1;
 
     public $tabModel  = false;
+
+    public $editModel = false;
 
     public function mount($panel_id)
     {
@@ -35,20 +37,48 @@ class PanelDetails extends Component
         $this->tabModel = true;
     }
 
+    // edit
+    public function edit($id)
+    {
+        $this->editModel = true;
+        $tabData = Tab::find($id);
+        $this->tab = $tabData->name;
+        $this->tab_id = $tabData->id;
+        $this->product_Id = [];
+        $this->quantity = [];
+        foreach ($tabData->distripution_product as $key => $value) {
+            $this->i = $key ;
+            array_push($this->inputs, $key + 1);
+            $this->product_Id[$key] = $value->id;
+            $this->quantity[$key] = $value->pivot->quantity;
+        }
+    }
+
+    public function editTab(){
+        $tab = Tab::find($this->tab_id);
+        $tab->distripution_product()->detach();
+         foreach ($this->product_Id as $key => $value) {
+             $tab->distripution_product()->attach([$value => ['quantity' => $this->quantity[$key]]]);
+         }
+
+          $this->closemodal();
+         
+ 
+      }
+
     // delete
     public function delete($id)
     {
         $tab = Tab::find($id);
         $tab->distripution_product()->detach();
         $tab->delete();
-        session()->flash('message', 'Tab deleted successfully.');
+        $this->closemodal();
     }
 
     // closemodal
     public function closemodal()
     {
         return redirect(request()->header('Referer'));
-        $this->tabModel = false;
     }
 
     public function selectedProductItem($item)
@@ -82,6 +112,8 @@ class PanelDetails extends Component
         foreach ($this->inputs as $key => $value) {
             if ($value == $i) {
                 unset($this->inputs[$key]);
+                unset($this->product_Id[$key]);
+                unset($this->quantity[$key]);
             }
         }
     }
@@ -95,11 +127,6 @@ class PanelDetails extends Component
         foreach ($this->product_Id as $key => $value) {
             $tab->distripution_product()->attach([$value => ['quantity' => $this->quantity[$key]]]);
         }
-        $this->product_Id = [];
-        $this->quantity = [];
-         $this->inputs = [];
-         $this->i = 1;
-         $this->tab = '';
          $this->closemodal();
 
         //  flash message
@@ -107,6 +134,7 @@ class PanelDetails extends Component
         
 
      }
+    
 
     //  back
     public function back(){
