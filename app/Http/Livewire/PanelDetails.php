@@ -16,7 +16,7 @@ class PanelDetails extends Component
     ];
 
     public $tabs = [
-        'incomming', 'outgoing', 'additionals', 'sub incomming 1', 'sub outgoing 1', 'sub incomming 2', 'sub outgoing 2', 'sub incomming 3', 'sub outgoing 3', 'sub incomming 4', 'sub outgoing 4', 'sub incomming 5', 'sub outgoing 5', 'sub incomming 6', 'sub outgoing 6'
+        'incomming', 'outgoing', 'Sheet metal', 'sub incomming 1', 'sub outgoing 1', 'sub incomming 2', 'sub outgoing 2', 'sub incomming 3', 'sub outgoing 3', 'sub incomming 4', 'sub outgoing 4', 'sub incomming 5', 'sub outgoing 5', 'sub incomming 6', 'sub outgoing 6'
 
     ];
     public $tab,$tab_id, $i = 1, $products, $product_Id, $quantity, $inputs = [] , $inputsTabs = [], $y = 1;

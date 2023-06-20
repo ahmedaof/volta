@@ -7,6 +7,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Document</title>
     <style>
+          @page { margin: 180px 50px; }
+    #header { position: fixed; left: 0px; top: -180px; right: 0px; height: 150px;  text-align: center; }
         .page-break {
             page-break-after: always;
         }
@@ -58,12 +60,12 @@
         margin: 80px auto;
       ">
         <!-- head area  -->
-        <div class="row" style="
+        <div  id ="header" class="row" style="
           overflow: hidden;
           position: relative;
           border-bottom: 1px solid #333;
-          padding-bottom: 10px;
-        ">
+         
+         ">
             <div style="width: 70%; float: left">
                 <img src="./images/logo.jpeg" alt="logo" style="max-width: 300px" />
                 <h3 class="text-uppercase" style="margin-top: 15px; margin-bottom: 10px">
@@ -75,7 +77,6 @@
             <div class="col-md-2" style="
             width: 30%;
             float: right;
-            margin-top: -170px;
           ">
                 <img src="./images/abb.png" alt="logo" style="max-width: 150px" />
             </div>
@@ -85,21 +86,16 @@
           padding: 15px 20px;
           text-align: center;
           background-color: #d6e3bc;
-          margin-top: 40px;
+          margin-top: 10px;
         ">
             <h1 style="text-transform: capitalize; color: #ff0000; font-weight: bold">
                 technical offer
             </h1>
         </div>
-
-        @php
-        $Arabic = new \ArPHP\I18N\Arabic();
-        @endphp
-
         <!-- first table  -->
         <table style="
           width: 100%;
-          margin-top: 80px;
+          margin-top: 25px;
           border: 1px solid #333;
           vertical-align: middle;
         ">
@@ -113,7 +109,7 @@
             </tr>
             <tr>
                 <td>Project Name</td>
-                <td>{{$Arabic->standard($project->name) }}</td>
+                <td>{{$project->name}}</td>
             </tr>
             <tr>
                 <td>Client</td>
@@ -122,9 +118,10 @@
         </table>
 
         <!-- second table  -->
-        <table style="
+        <table  class="page-break" style="
           width: 100%;
-          margin-top: 80px;
+          margin-top: 25px;
+          margin-bottom: 0px;
           border: 1px solid #333;
           vertical-align: middle;
         ">
@@ -145,7 +142,28 @@
         <!-- third table  -->
 
         @foreach ($project->panels as $key => $panel)
-        <table class="table-noborder" style="
+        <div class="row" style="
+        overflow: hidden;
+        position: relative;
+        border-bottom: 1px solid #333;
+        padding-bottom: 10px;
+      ">
+          <div style="width: 70%; float: left">
+              <img src="./images/logo.jpeg" alt="logo" style="max-width: 300px" />
+              <h3 class="text-uppercase" style="margin-top: 15px; margin-bottom: 10px">
+                  low and medium voltage panels
+              </h3>
+              <h4 class="" style="color: #467481">TECHNICAL offer</h4>
+          </div>
+
+          <div class="col-md-2" style="
+          width: 30%;
+          float: right;
+        ">
+              <img src="./images/abb.png" alt="logo" style="max-width: 150px" />
+          </div>
+      </div>
+        <table class="table-noborder page-break" style="
           width: 100%;
           margin-top: 80px;
           border: 1px solid #333;
@@ -170,6 +188,7 @@
                 <td style="border: 1px solid #333" colspan="2">IP {{ $panel->panelType->ip }}</td>
             </tr>
             @foreach ($panel->tabs as $key => $tab)
+            @if($tab->name != 'additionals' || $tab->name != 'Sheet metal')
             <tr>
                 <td style="border: 1px solid #333">QTY</td>
                 <td style="border: 1px solid #333" width="80%" colspan="2">Description</td>

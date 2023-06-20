@@ -442,7 +442,7 @@ return [
                 [
                     'type' => 'js',
                     'asset' => true,
-                    'location' => asset('js/sweet.min.js'),
+                    'location' => './js/sweet.min.js',
                 ],
             ],
         ],
