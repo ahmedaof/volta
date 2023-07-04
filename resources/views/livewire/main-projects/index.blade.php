@@ -51,7 +51,10 @@
                         <a href="{{ route('projects.show', $project?->id) }}" class="btn btn-sm btn-success">Show</a>
 
                         {{-- download Technical offer --}}
-                        <button wire:click="download({{ $project?->id }})" class="btn btn-sm btn-info">Download</button>
+                        <button wire:click="download({{ $project?->id }})" class="btn btn-sm btn-info">Technical</button>
+                        {{-- download finantial offer --}}
+                        <button wire:click="downloadFinantial({{ $project?->id }})" class="btn btn-sm btn-dark">commercial</button>
+                        {{-- download finantial offer --}}
                         
 
                         

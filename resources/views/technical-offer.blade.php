@@ -214,6 +214,7 @@
             </tr>
 
             @endforeach
+            @endif
             @endforeach
         </table>
         @endforeach
