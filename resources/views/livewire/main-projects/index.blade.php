@@ -53,14 +53,47 @@
                         {{-- download Technical offer --}}
                         <button wire:click="download({{ $project?->id }})" class="btn btn-sm btn-info">Technical</button>
                         {{-- download finantial offer --}}
-                        <button wire:click="downloadFinantial({{ $project?->id }})" class="btn btn-sm btn-dark">commercial</button>
+                        <button wire:click="downloadFinantial({{ $project?->id }})" class="btn btn-sm btn-primary">Commercial</button>
                         {{-- download finantial offer --}}
                         
 
+                        @if($project?->status == 'pending')
+
+                        <button wire:click="factory({{ $project?->id }})" class="btn btn-sm btn-dark">Factory</button>
+
+                        @endif
                         
                     </td>
                 </tr>
             @endforeach
         </tbody>
+
+
+        <script>
+            window.addEventListener('swalDelete', function(e) {
+                Swal.fire({
+                    title: 'Are you sure?'
+                    , text: "This Will Be Converted To Factory and quntity not enough for ! "+e.detail.name
+                    , icon: 'warning'
+                    , showCancelButton: true
+                    , confirmButtonColor: '#3085d6'
+                    , cancelButtonColor: '#d33'
+                    , confirmButtonText: 'Yes, convert it!'
+                }).then((result) => {
+                    if (result.value) {
+                        livewire.emit('deleteAfter')
+                    }
+                })
+            });
+
+                 // sucess
+        window.addEventListener('success', function(e) {
+            Swal.fire(
+                'The Status?'
+                , 'Updated Successfully'
+            )
+        });
+    
+        </script>
     
 </div>

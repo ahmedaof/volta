@@ -507,12 +507,41 @@
                     <td class="testing">{{ $total }}</td>
                     <td class="testing">{{ $total * ($panel->panel_quantity )}}</td>
                 </tr>
+                <tr>
+                    <td colspan="4" style="text-align: center">Total</td>
+                    <td>{{ $total * ($panel->panel_quantity )}}</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: center">‫‪14%‬‬ ‫‪TAXES‬‬</td>
+                    <td>{{ $total * ($panel->panel_quantity ) - ($total * $panel->panel_quantity  * .14)}}</td>
+                </tr>
             </tbody>
 
 
 
         </table>
         @endforeach
+
+        <table dir="rtl" class="page-break" style="
+          width: 100%;
+          margin-top: 25px;
+          margin-bottom: 0px;
+          border: 1px solid #333;
+          vertical-align: middle;
+        ">
+            <tr>
+                <td class="borderTest" style="text-align: right;font-weight: bold;">شروط البيع :</td>
+            </tr>
+            <tr>
+                <td class="borderTest" style="text-align: right;"> * العرض سار لمدة اسبوع من تاريخه او لحين تغيير الاسعار</td>
+            </tr>
+            <tr>
+                <td class="borderTest" style="text-align: right;">* شروط الدفع 50 % من اجمالى السعر دفعة مقدمة & 50 % دفعه نهائيه عند الاستلام</td>
+            </tr>
+            <tr>
+                <td class="borderTest" style="text-align: right;">* مدة التوريد : 2 يوم من تاريخ استلام الدفعه او الاعتماد ايهما لاحق</td>
+            </tr>
+        </table>
     </div>
 
 
