@@ -37,7 +37,7 @@
             @foreach ($projects as $project)
                 <tr>
                     <td>{{ $project?->name }}</td>
-                    <td>{{ $project?->offer_number }}</td>
+                    <td>{{ $project?->offer_number }} {!!   $project->offer_fin ?  '<br>' . $project->offer_fin : ''  !!}</td>
                     <td>{{ $project?->type }}</td>
                     <td>{{ $project?->notes }}</td>
 
@@ -73,15 +73,23 @@
             window.addEventListener('swalDelete', function(e) {
                 Swal.fire({
                     title: 'Are you sure?'
-                    , text: "This Will Be Converted To Factory and quntity not enough for ! "+e.detail.name
+                    , text: e.detail.name == 'delete' ? 'Delete It' : e.detail.name ==  'factory' ? 'Factory It'   :"This Will Be Converted To Factory and quntity not enough for ! "+e.detail.name
                     , icon: 'warning'
                     , showCancelButton: true
                     , confirmButtonColor: '#3085d6'
                     , cancelButtonColor: '#d33'
-                    , confirmButtonText: 'Yes, convert it!'
+                    , confirmButtonText: e.detail.name == 'delete' ? ' Yes , delete It':'Yes, convert it!'
                 }).then((result) => {
                     if (result.value) {
-                        livewire.emit('deleteAfter')
+                        if (e.detail.name == 'delete') {
+                            Livewire.emit('deleteProject')
+                        } else if (e.detail.name == 'factory') {
+                            Livewire.emit('factoryProject')
+                        }
+                        else {
+                            livewire.emit('deleteAfter')
+                            // Livewire.emit('factory')
+                        }
                     }
                 })
             });

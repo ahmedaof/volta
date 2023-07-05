@@ -13,6 +13,8 @@ class MainProject extends Component
     // listener
     protected $listeners = [
         'deleteAfter',
+        'deleteProject',
+        'factoryProject'
 
     ];
 
@@ -74,6 +76,17 @@ class MainProject extends Component
         }
 
 
+        $project->status = 'factory';
+        // replace of VE with PO
+        $offer = str_replace('VE', 'PO', $project->offer_number);
+        // replace char number 5 and 6 with VE
+        // $project->offer_number = substr_replace($project->offer_number, 'VE', -5, 0);
+        $project->offer_fin = substr_replace($offer, 'VE', -7, 2);
+        $project->save();
+        // flash message
+        // flash message
+        session()->flash('message', 'Project Factory Successfully.');
+
         $this->dispatchBrowserEvent('success');
     }
 
@@ -82,14 +95,21 @@ class MainProject extends Component
     {
 
         $this->projrct_id = $project_id;
+        $this->dispatchBrowserEvent('swalDelete',['name' => 'factory']);
+
+       
+    }
+
+    public function factoryProject(){
+
         $project = ModelsMainProject::find($this->projrct_id);
 
         foreach ($project->panels as $panel) {
             foreach ($panel->tabs as $tab) {
                 foreach ($tab->distripution_product as $product) {
                     if ($product->pivot->quantity > $product->quantity) {
-
                         $this->dispatchBrowserEvent('swalDelete',['name' => $product->abb_description]);
+                         return;
                     } else {
                         $product->quantity = $product->quantity - $product->pivot->quantity;
                         $product->save();
@@ -100,18 +120,26 @@ class MainProject extends Component
         }
         $project->status = 'factory';
         // replace of VE with PO
-        $project->offer_number = str_replace('VE', 'PO', $project->offer_number);
+        $offer = str_replace('VE', 'PO', $project->offer_number);
         // replace char number 5 and 6 with VE
         // $project->offer_number = substr_replace($project->offer_number, 'VE', -5, 0);
-        $project->offer_number = substr_replace($project->offer_number, 'VE', -7, 2);
+        $project->offer_fin = substr_replace($offer, 'VE', -7, 2);
         $project->save();
         // flash message
         session()->flash('message', 'Project Factory Successfully.');
+
     }
 
     public function delete($id)
     {
-        $project = ModelsMainProject::find($id);
+        $this->projrct_id = $id;
+        $this->dispatchBrowserEvent('swalDelete',['name' => 'delete']);
+
+    }
+
+    public function deleteProject(){
+
+        $project = ModelsMainProject::find($this->projrct_id);
         $project->delete();
         // flash
         session()->flash('message', 'Project Deleted Successfully.');

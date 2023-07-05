@@ -1,4 +1,9 @@
 <div>
+    {{-- button to add pannels --}}
+    <button wire:click="create()" class="btn btn-success mt-3 mb-3 float-right">Add New Panel</button>
+    {{-- button to add pannels --}}
+
+    @include('livewire.create-panel')
     <table class="table table-bordered">
         <thead>
             <tr>

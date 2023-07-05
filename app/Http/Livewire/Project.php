@@ -110,7 +110,15 @@ class Project extends Component
     public function save()
     {
 
-
+        if ($this->type == 'Panels') {
+            $this->validate([
+                'panel_number' => 'required',
+                'panel_name' => 'required',
+                'panel_type' => 'required',
+                'panel_quantity' => 'required',
+                'panel_volte' => 'required',
+            ]);
+        }
         $spacePosition = strpos(auth()->user()->name, ' '); 
 
         if ($spacePosition !== false) { // If a space is found
