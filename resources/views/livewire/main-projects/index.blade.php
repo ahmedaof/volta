@@ -37,7 +37,7 @@
             @foreach ($projects as $project)
                 <tr>
                     <td>{{ $project?->name }}</td>
-                    <td>{{ $project?->offer_number }} {!!   $project->offer_fin ?  '<br>' . $project->offer_fin : ''  !!}</td>
+                    <td>{{ 'TECH :(' . $project?->offer_number . ')' }} {!!   $project->offer_fin ?  '<br>' . 'COM : ( ' . $project->offer_fin . ')' : ''  !!}</td>
                     <td>{{ $project?->type }}</td>
                     <td>{{ $project?->notes }}</td>
 

@@ -10,6 +10,7 @@ use App\Models\PanelsTypes;
 use App\Models\Project as ModelsProject;
 use App\Models\Tab;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class Project extends Component
@@ -135,7 +136,8 @@ class Project extends Component
 
              //  validate name to be unique
         $this->validate([
-            'name' => 'required|unique:main_projects,name',
+            'name' => ['required', Rule::unique('main_projects')->whereNull('deleted_at')],
+
         ]);
         
         $main =   MainProject::create([
