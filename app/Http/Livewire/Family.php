@@ -23,7 +23,7 @@ class Family extends Component
 
     public function edit($id)
     {
-        $family = ProductFamily::findOrFail($id);
+        $family = ProductFamily::find($id);
         $this->name = $family->name;
         $this->discount = $family->discount;
         $this->family_id = $family->id;

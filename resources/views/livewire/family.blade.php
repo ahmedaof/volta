@@ -15,11 +15,18 @@
     <button wire:click="create" class="btn btn-primary float-right mt-3 mb-3">Create New Family</button>
 
     {{-- search field --}}
+
+
+
+
     <div class="form-group">
         <label for="search">Search</label>
         <input wire:model="search" type="text" class="form-control" id="search" placeholder="Search">
     </div>
     {{-- show pannels in table --}}
+
+
+
 
     <table class="table table-bordered table-hover">
         <thead>
@@ -48,10 +55,9 @@
 
 
 
-
-
-    @include('livewire.families.create')
     @include('livewire.families.edit')
+    @include('livewire.families.create')
+
 
 
 
