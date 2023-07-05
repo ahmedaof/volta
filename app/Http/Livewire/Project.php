@@ -133,6 +133,11 @@ class Project extends Component
 
          $offer_number = 'VE' . MainProject::count() + 1 . $customer_name . date('m')  .'-'. date('y')  ;
 
+             //  validate name to be unique
+        $this->validate([
+            'name' => 'required|unique:main_projects,name',
+        ]);
+        
         $main =   MainProject::create([
 
             'name' =>  $this->name,

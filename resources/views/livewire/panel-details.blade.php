@@ -56,52 +56,6 @@
 
 
 
-
-
-
-    {{-- select tabs --}}
-    {{-- <select wire:model="tab" class="form-control select2-blue" id="tabModel">
-        <option value="">Select tab</option>
-        @foreach($tabs as $tab)
-        <option value="{{ $tab }}">{{ $tab }}</option>
-        @endforeach
-    </select>
-
-  
-
-    <div class="row">
-        <div class="form-group col-md-6 mr-0" wire:ignore>
-
-            <label for="product">Select Product</label>
-            <select label="Choose product" id="selectProduct.{{ $i }}" class="js-example-basic-single{{ $i }} form-control">
-                <option value="">Select product</option>
-                @foreach($products as $product)
-                <option i="{{ $product->id }}" {{ $product->id == $product_Id ? 'selected' : '' }}>{{ $product->abb_description }}</option>
-                @endforeach
-            </select>
-            @error("product_Id.$i")
-            <span class="text-danger">{{ $message }}</span>
-            @enderror
-        </div>
-        <div class="form-group col-md-6">
-            <label for="quantity">Quantity</label>
-            <input wire:model.lazy="quantity.1" type="number" class="form-control" placeholder="Enter quantity">
-            @error('quantity')
-            <span class="text-danger">{{ $message }}</span>
-            @enderror
-        </div>
-    </div>
-
-    <div class="Added">
-        @foreach($inputs as $key => $value)
-        @include('livewire.projects.record' ,['key'=>$key , 'value'=>$value , 'i' => $i])
-        @endforeach
-    </div>
-    {{-- button to add new row --}}
-    {{-- <button wire:click.defer="addRow({{$i}})" class="btn btn-primary">Add New Product</button>  --}}
-
-    {{-- add tabs button --}}
-
     @include('livewire.projects.create')
     @include('livewire.edit-tabs')
 

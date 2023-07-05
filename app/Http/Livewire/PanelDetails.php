@@ -19,7 +19,7 @@ class PanelDetails extends Component
         'incomming', 'outgoing', 'Sheet metal', 'sub incomming 1', 'sub outgoing 1', 'sub incomming 2', 'sub outgoing 2', 'sub incomming 3', 'sub outgoing 3', 'sub incomming 4', 'sub outgoing 4', 'sub incomming 5', 'sub outgoing 5', 'sub incomming 6', 'sub outgoing 6'
 
     ];
-    public $tab,$tab_id, $i = 1, $products, $product_Id, $quantity, $inputs = [] , $inputsTabs = [], $y = 1;
+    public $tab, $tab_id, $i = 1, $products, $product_Id, $quantity, $inputs = [], $inputsTabs = [], $y = 1;
 
     public $tabModel  = false;
 
@@ -47,24 +47,23 @@ class PanelDetails extends Component
         $this->product_Id = [];
         $this->quantity = [];
         foreach ($tabData->distripution_product as $key => $value) {
-            $this->i = $key ;
+            $this->i = $key;
             array_push($this->inputs, $key + 1);
             $this->product_Id[$key] = $value->id;
             $this->quantity[$key] = $value->pivot->quantity;
         }
     }
 
-    public function editTab(){
+    public function editTab()
+    {
         $tab = Tab::find($this->tab_id);
         $tab->distripution_product()->detach();
-         foreach ($this->product_Id as $key => $value) {
-             $tab->distripution_product()->attach([$value => ['quantity' => $this->quantity[$key]]]);
-         }
+        foreach ($this->product_Id as $key => $value) {
+            $tab->distripution_product()->attach([$value => ['quantity' => $this->quantity[$key]]]);
+        }
 
-          $this->closemodal();
-         
- 
-      }
+        $this->closemodal();
+    }
 
     // delete
     public function delete($id)
@@ -109,35 +108,50 @@ class PanelDetails extends Component
 
     public function remove($i)
     {
-        foreach ($this->inputs as $key => $value) {
-            if ($value == $i) {
-                unset($this->inputs[$key]);
-                unset($this->product_Id[$key]);
-                unset($this->quantity[$key]);
-            }
+        // foreach ($this->inputs as $key => $value) {
+        // if ($key == $i) {
+        if (isset($this->inputs[$i + 1])) {
+            $inputNext = $this->inputs[$i + 1];
+            unset($this->inputs[$i + 1]);
+            $this->inputs[$i] = $inputNext;
+
+            $productNext = $this->product_Id[$i + 1];
+            unset($this->product_Id[$i + 1]);
+            $this->product_Id[$i] = $productNext;
+
+            $quantityNext = $this->quantity[$i + 1];
+            unset($this->quantity[$i + 1]);
+            $this->quantity[$i] = $quantityNext;
+        } else {
+            unset($this->inputs[$i]);
+            unset($this->product_Id[$i]);
+            unset($this->quantity[$i]);
         }
+
+        // }
+        // }
     }
 
 
-     public function saveTab(){
-       $tab = Tab::create([
+    public function saveTab()
+    {
+        $tab = Tab::create([
             'name' => $this->tab,
             'panel_id' => $this->panel_id,
         ]);
         foreach ($this->product_Id as $key => $value) {
             $tab->distripution_product()->attach([$value => ['quantity' => $this->quantity[$key]]]);
         }
-         $this->closemodal();
+        $this->closemodal();
 
         //  flash message
         session()->flash('message', 'Tab added successfully.');
-        
+    }
 
-     }
-    
 
     //  back
-    public function back(){
+    public function back()
+    {
         $panel = Panels::find($this->panel_id);
         return redirect()->route('plans', $panel->main_project_id);
     }

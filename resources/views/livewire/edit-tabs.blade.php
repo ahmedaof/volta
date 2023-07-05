@@ -19,7 +19,7 @@
 
                 <div class="Added mt-3">
                     @foreach($inputs as $key => $value)
-                    @include('livewire.projects.record' ,['key'=>$key , 'value'=>$value , 'i' => $i])
+                    @include('livewire.projects.record' ,['key'=>$key , 'value'=>$value ,'edit' => true , 'i' => $i ])
                     @endforeach
                 </div>
                 {{-- button to add new row --}}
