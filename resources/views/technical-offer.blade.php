@@ -5,17 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Document</title>
+    <title>Technical</title>
     <style>
-          @page { margin: 180px 50px; }
-    #header { position: fixed; left: 0px; top: -180px; right: 0px; height: 150px;  text-align: center; }
+        @page {
+            margin: 20px
+        }
+
+        #header {
+            position: fixed;
+            left: 0px;
+            top: -180px;
+            right: 0px;
+            /* height: 150px; */
+            text-align: center;
+            padding-bottom: 5px;
+            margin-bottom: 20px
+        }
+
         .page-break {
             page-break-after: always;
         }
 
+        /* 
         body {
             font-family: DejaVu Sans, sans-serif, Arial, Helvetica;
-        }
+        } */
 
         * {
             box-sizing: border-box;
@@ -60,18 +74,18 @@
         margin: 80px auto;
       ">
         <!-- head area  -->
-        <div  id ="header" class="row" style="
+        <div id="header" class="row" style="
           overflow: hidden;
           position: relative;
-          border-bottom: 1px solid #333;
+          border-bottom: 1px solid #467481;
          
          ">
-            <div style="width: 70%; float: left">
-                <img src="./images/logo.jpeg" alt="logo" style="max-width: 300px" />
-                <h3 class="text-uppercase" style="margin-top: 15px; margin-bottom: 10px">
+            <div style="width: 70%; float: left; text-align: left;">
+                <img src="./images/logo.jpeg" alt="logo" style="max-width: 200px" />
+                <h5 class="text-uppercase" style="margin-top: 15px; margin-bottom: 3px">
                     low and medium voltage panels
-                </h3>
-                <h4 class="" style="color: #467481">TECHNICAL offer</h4>
+                </h5>
+                <h6 class="" style="color: #467481; margin: 0;">TECHNICAL OFFER</h6>
             </div>
 
             <div class="col-md-2" style="
@@ -83,19 +97,18 @@
         </div>
 
         <div style="
-          padding: 15px 20px;
+          padding: 8px 20px;
           text-align: center;
           background-color: #d6e3bc;
-          margin-top: 10px;
+          margin: 80px 0;
         ">
-            <h1 style="text-transform: capitalize; color: #ff0000; font-weight: bold">
+            <h1 style="text-transform: capitalize; color: #ff0000; font-weight: bold; margin: 0">
                 technical offer
             </h1>
         </div>
         <!-- first table  -->
         <table style="
           width: 100%;
-          margin-top: 25px;
           border: 1px solid #333;
           vertical-align: middle;
         ">
@@ -118,9 +131,9 @@
         </table>
 
         <!-- second table  -->
-        <table  class="page-break" style="
+        <table class="page-break" style="
           width: 100%;
-          margin-top: 25px;
+          margin-top: 100px;
           margin-bottom: 0px;
           border: 1px solid #333;
           vertical-align: middle;
@@ -142,31 +155,30 @@
         <!-- third table  -->
 
         @foreach ($project->panels as $key => $panel)
-        <div class="row" style="
-        overflow: hidden;
-        position: relative;
-        border-bottom: 1px solid #333;
-        padding-bottom: 10px;
-      ">
-          <div style="width: 70%; float: left">
-              <img src="./images/logo.jpeg" alt="logo" style="max-width: 300px" />
-              <h3 class="text-uppercase" style="margin-top: 15px; margin-bottom: 10px">
-                  low and medium voltage panels
-              </h3>
-              <h4 class="" style="color: #467481">TECHNICAL offer</h4>
-          </div>
+        <div id="header" class="row" style="
+          overflow: hidden;
+          position: relative;
+          border-bottom: 1px solid #467481;
+         
+         ">
+            <div style="width: 70%; float: left; text-align: left;">
+                <img src="./images/logo.jpeg" alt="logo" style="max-width: 200px" />
+                <h5 class="text-uppercase" style="margin-top: 15px; margin-bottom: 3px">
+                    low and medium voltage panels
+                </h5>
+                <h6 class="" style="color: #467481; margin: 0;">TECHNICAL OFFER</h6>
+            </div>
 
-          <div class="col-md-2" style="
-          width: 30%;
-          float: right;
-        ">
-              <img src="./images/abb.png" alt="logo" style="max-width: 150px" />
-          </div>
-      </div>
-        <table class="table-noborder page-break" style="
+            <div class="col-md-2" style="
+            width: 30%;
+            float: right;
+          ">
+                <img src="./images/abb.png" alt="logo" style="max-width: 150px" />
+            </div>
+        </div>
+        <table class="page-break" style="
           width: 100%;
-          margin-top: 80px;
-          border: 1px solid #333;
+          margin-top: 20px;
           vertical-align: middle;
         ">
             <tr style="border: 1px solid #333">

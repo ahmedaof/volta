@@ -13,22 +13,9 @@
             </tr>
         </thead>
         <tbody>
-
-            {{-- ModelsProject::create([
-                'quantity' => $quantity,
-                'distripution_product_id' => $product->id,
-                'main_project_id' => $main->id,
-                'price_after_discount' => $price_after_discount,
-                'price_after_discount_with_vat' => $price_after_discount_with_vat,
-                'total_price_after_discount_without_vat' => $price_after_discount * $quantity,
-                'total_price_after_discount_with_vat' => $price_after_discount_with_vat * $quantity,
-                'total_price_with_vat' => ($price_after_discount_with_vat + ($product->abb_id == null ? (14 / 100) * $product->abb_price : 0)) * $quantity,
-                'total_price_without_vat' => $price_after_discount_with_vat * $quantity
-            ]); --}}
             @foreach ($products as $product)
             @php
-
-            $price_after_discount = ($product->abb_price - (($product->abb_discount / 100) * $product->abb_price));
+            $price_after_discount = ($product->abb_price - (($product->family->discount / 100) * $product->abb_price));
             $price_after_discount_with_vat = $price_after_discount + ($product->abb_id != null ? (14 / 100) * $product->abb_price : 0);
             @endphp
             <tr>
@@ -42,5 +29,7 @@
                 <td>{{ $price_after_discount_with_vat * $product->pivot->quantity }}</td>
             </tr>
 
-                @endforeach
+            @endforeach
+        </tbody>
+    </table>
 </div>

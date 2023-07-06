@@ -48,13 +48,22 @@
                     <td>
                         <button wire:click="delete({{ $project?->id }})" class="btn btn-sm btn-danger">Delete</button>
                         {{-- a href to show --}}
-                        <a href="{{ route('projects.show', $project?->id) }}" class="btn btn-sm btn-success">Show</a>
+                        <a href="{{ route('projects.show', $project?->id) }}" class="btn btn-sm btn-success">Edit Details</a>
 
                         {{-- download Technical offer --}}
                         <button wire:click="download({{ $project?->id }})" class="btn btn-sm btn-info">Technical</button>
                         {{-- download finantial offer --}}
                         <button wire:click="downloadFinantial({{ $project?->id }})" class="btn btn-sm btn-primary">Commercial</button>
                         {{-- download finantial offer --}}
+
+                        {{-- a href to all details --}}
+
+                        @if($project->type == 'Panels')
+                            
+                        <a href="{{ route('projectDetails', $project?->id) }}" class="btn btn-sm btn-warning">Details</a>
+                        @endif
+
+                        {{-- factory button --}}
                         
 
                         @if($project?->status == 'pending')

@@ -11,6 +11,7 @@ use App\Http\Livewire\PanelStatisics;
 use App\Http\Livewire\PanelsType;
 use App\Http\Livewire\Plans;
 use App\Http\Livewire\Project;
+use App\Http\Livewire\ProjectDetails;
 use App\Http\Livewire\ProjectsShow;
 use App\Http\Livewire\User;
 use Illuminate\Support\Facades\Route;
@@ -48,4 +49,7 @@ Route::get('/panelStatisics/{tab_id}', PanelStatisics::class)->name('panelStatis
 
 // families
 Route::get('/families',Family::class)->name('families');
+
+// projectDetails
+Route::get('/projectDetails/{project_id}', ProjectDetails::class)->name('projectDetails');
 });
