@@ -10,6 +10,7 @@ use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf as PDF;
 class MainProject extends Component
 {
 
+
     // listener
     protected $listeners = [
         'deleteAfter',
@@ -18,7 +19,7 @@ class MainProject extends Component
 
     ];
 
-    public $searchTerm, $projrct_id;
+    public $searchTerm, $project_id,  $chooseModel = false , $project_type;
 
     public function download($project_id)
     {
@@ -38,22 +39,43 @@ class MainProject extends Component
     public function downloadFinantial($project_id)
     {
 
+        $this->project_id = $project_id;
+        $this->chooseModel = true;
 
-        $project = ModelsMainProject::find($project_id);
+        
+    }
+
+    // closemodal
+    public function closemodal()
+    {
+        $this->chooseModel = false;
+    }
+
+
+    public function ChooseProject(){
+        // validate
+        $this->validate([
+            'project_type' => 'required'
+        ]);
+        $project = ModelsMainProject::find($this->project_id);
 
         $user = auth()->user();
+        $project_type = $this->project_type;
    
-        $pdfContent = PDF::loadView('finantial-offer', compact('user', 'project'));
+        $pdfContent = PDF::loadView('finantial-offer', compact('user', 'project','project_type'));
+        $this->chooseModel = false;
 
         return response()->streamDownload(function ()  use ($pdfContent) {
             $pdfContent->stream('commercial-offer');
         }, $project->offer_number . '.pdf');
+
+
     }
 
     public function deleteAfter()
     {
 
-        $project = ModelsMainProject::find($this->projrct_id);
+        $project = ModelsMainProject::find($this->project_id);
 
         foreach ($project->panels as $panel) {
             foreach ($panel->tabs as $tab) {
@@ -86,7 +108,7 @@ class MainProject extends Component
     public function factory($project_id)
     {
 
-        $this->projrct_id = $project_id;
+        $this->project_id = $project_id;
         $this->dispatchBrowserEvent('swalDelete',['name' => 'factory']);
 
        
@@ -94,7 +116,7 @@ class MainProject extends Component
 
     public function factoryProject(){
 
-        $project = ModelsMainProject::find($this->projrct_id);
+        $project = ModelsMainProject::find($this->project_id);
 
         foreach ($project->panels as $panel) {
             foreach ($panel->tabs as $tab) {
@@ -124,14 +146,14 @@ class MainProject extends Component
 
     public function delete($id)
     {
-        $this->projrct_id = $id;
+        $this->project_id = $id;
         $this->dispatchBrowserEvent('swalDelete',['name' => 'delete']);
 
     }
 
     public function deleteProject(){
 
-        $project = ModelsMainProject::find($this->projrct_id);
+        $project = ModelsMainProject::find($this->project_id);
         $project->delete();
         // flash
         session()->flash('message', 'Project Deleted Successfully.');

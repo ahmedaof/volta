@@ -113,4 +113,5 @@
     
         </script>
     
+    @include('livewire.main-projects.choose')
 </div>

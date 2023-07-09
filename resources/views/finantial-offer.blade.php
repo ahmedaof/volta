@@ -200,13 +200,23 @@
                 </tr>
             </thead>
             @php
-                    
      $total = 0;
         foreach ($project->panels as $panel) {
             foreach ($panel->tabs as $tab) {
                 foreach ($tab->distripution_product as $product) {
-                    $total += $product->pivot->quantity *
-                        ($product->abb_price - ($product->abb_price * ($product->family->discount / 100)));
+                    if($project_type == 'a'){
+                        $total += ($product->pivot->quantity *
+                        ($product->abb_price - ($product->abb_price * ($product->family->discount / 100))));
+
+                        $total += $total * 0.14;
+                    }else{
+                        $total += ($product->pivot->quantity *
+                        ($product->abb_price - ($product->abb_price * ($product->family->discount / 100))));
+                        if($product->abb_id != null){
+                            $total += $total * 0.14;
+                        }
+                    }
+                   
                 }
             }
         }
