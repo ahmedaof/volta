@@ -56,7 +56,7 @@
 
 
 
-    @include('livewire.projects.create')
+    @include('livewire.projects.create',['details' => true])
     @include('livewire.edit-tabs')
 
 

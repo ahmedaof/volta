@@ -56,7 +56,7 @@
                     <button wire:click="AddPanel" class="btn btn-primary">
                         Save
                     </button>
-                    <button wire:click="closemodal" class="btn btn-warning">
+                    <button wire:click="close" class="btn btn-warning">
                         <span class='fa fa-remove'></span> Close
                     </button>
                 </div>

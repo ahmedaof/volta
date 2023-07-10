@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\DistriputionProduct;
 use App\Models\Panels;
 use App\Models\Tab;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class PanelDetails extends Component
@@ -19,7 +20,7 @@ class PanelDetails extends Component
         'incomming', 'outgoing', 'Sheet metal', 'sub incomming 1', 'sub outgoing 1', 'sub incomming 2', 'sub outgoing 2', 'sub incomming 3', 'sub outgoing 3', 'sub incomming 4', 'sub outgoing 4', 'sub incomming 5', 'sub outgoing 5', 'sub incomming 6', 'sub outgoing 6'
 
     ];
-    public $tab, $tab_id, $i = 1, $products, $product_Id, $quantity, $inputs = [], $inputsTabs = [], $y = 1;
+    public $tab, $tab_id, $i = 0, $products, $product_Id, $quantity, $inputs = [], $inputsTabs = [], $y = 1;
 
     public $tabModel  = false;
 
@@ -28,7 +29,7 @@ class PanelDetails extends Component
     public function mount($panel_id)
     {
         $this->panel_id = $panel_id;
-        $this->products = DistriputionProduct::all();
+        $this->products = DistriputionProduct::get();
     }
 
     // addTab
@@ -83,7 +84,7 @@ class PanelDetails extends Component
     public function selectedProductItem($item)
     {
         if ($item) {
-            $product = DistriputionProduct::where('abb_description', $item)->first();
+            $product = DistriputionProduct::where('id' , $item  )->first();
             $this->product_Id[$this->i] = $product->id;
         } else
             $product = null;
@@ -135,12 +136,17 @@ class PanelDetails extends Component
 
     public function saveTab()
     {
+        $this->validate([
+            'tab' => 'required',
+            'product_Id.*' => 'required',
+            'quantity' => ['required', 'array', 'min:' . count($this->inputs)],
+        ]);
         $tab = Tab::create([
             'name' => $this->tab,
             'panel_id' => $this->panel_id,
         ]);
         foreach ($this->product_Id as $key => $value) {
-            $tab->distripution_product()->attach([$value => ['quantity' => $this->quantity[$key]]]);
+            $tab->distripution_product()->attach([$value => ['quantity' => $this->quantity[$key - 1]]]);
         }
         $this->closemodal();
 

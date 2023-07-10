@@ -94,7 +94,7 @@ class Project extends Component
     public function selectedProductItem($item)
     {
         if ($item) {
-            $this->product = DistriputionProduct::where('abb_description', $item)->first();
+            $this->product = DistriputionProduct::where('id', $item)->first();
             $this->product_Id[$this->i] = $this->product->id;
         } else
             $this->product = null;

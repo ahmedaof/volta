@@ -5,7 +5,7 @@
         <select label="Choose product" id="selectProduct.{{ $key }}"  class="js-example-basic-single{{ $key }} form-control">
             <option value="">Select product</option>
             @foreach($products as $product)
-            <option i="{{ $product->id }}" {{ isset($product_Id[$key]) && $product->id == $product_Id[$key] ? 'selected' : '' }}>{{ $product->abb_description }}</option>
+            <option value="{{ $product->id }}" {{ isset($product_Id[$key]) && $product->id == $product_Id[$key] ? 'selected' : '' }}>{{ $product->abb_description }}</option>
             @endforeach
         </select>
         @error("product_Id.$key")
@@ -15,7 +15,7 @@
     <div class="form-group col-md-3">
         <label for="quantity">Quantity</label>
         <input wire:model.lazy="quantity.{{ $key }}" type="number" class="form-control" placeholder="Enter quantity">
-        @error("quantity.$key")
+        @error("quantity")
         <span class="text-danger">{{ $message }}</span>
         @enderror
     </div>
@@ -33,7 +33,7 @@
             }
             initSelectProductDrop();
             $('.js-example-basic-single{{ $key }}').on('change', function (e) {
-                console.log(e.target);
+                console.log('sf' ,e.target.value);
                 livewire.emit('selectedProductItem', e.target.value)
             });
             window.livewire.on('select2',()=>{

@@ -19,6 +19,9 @@
                 </select>
 
 
+                @if(isset($details) && !$details)
+                 
+              
                 <div class="row">
                     <div class="form-group col-md-6" wire:ignore>
 
@@ -41,14 +44,14 @@
                         @enderror
                     </div>
                 </div>
-
-                <div class="Added">
+                @endif
+                <div class="Added mt-3" >
                     @foreach($inputs as $key => $value)
                     @include('livewire.projects.record' ,['key'=>$key , 'value'=>$value , 'i' => $i])
                     @endforeach
                 </div>
                 {{-- button to add new row --}}
-                <button wire:click.defer="addRow({{$i}})" class="btn btn-primary">Add New Product</button>
+                <button wire:click.defer="addRow({{$i}})" class="btn btn-primary mt-3 mb-3">Add New Product</button>
 
 
                 <div class="modal-footer">
