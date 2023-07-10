@@ -138,7 +138,7 @@ class PanelDetails extends Component
     {
         $this->validate([
             'tab' => 'required',
-            'product_Id.*' => 'required',
+            'product_Id' => ['required', 'array', 'min:' . count($this->inputs)],
             'quantity' => ['required', 'array', 'min:' . count($this->inputs)],
         ]);
         $tab = Tab::create([
