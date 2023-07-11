@@ -41,6 +41,7 @@
         <tbody>
             @foreach ($projects as $project)
                 <tr>
+                    {{-- test --}}
                     <td>{{ $project?->name }}</td>
                     <td>{{  $project?->offer_number  }} {!!   $project->offer_fin ?  '<br>'. $project->offer_fin  : ''  !!}</td>
                     <td>{{ $project?->version ?? 'R00' }}</td>
