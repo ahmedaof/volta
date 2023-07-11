@@ -1,8 +1,8 @@
 <div class="row" {{ isset($edit) && $edit ? '' :  'wire:ignore'}}>
     <div class="form-group col-md-6">
-       
+
         <label for="product">Select Product</label>
-        <select label="Choose product" id="selectProduct.{{ $key }}"  class="js-example-basic-single{{ $key }} form-control">
+        <select label="Choose product" id="selectProduct.{{ $key }}" class="js-example-basic-single{{ $key }} form-control">
             <option value="">Select product</option>
             @foreach($products as $product)
             <option value="{{ $product->id }}" {{ isset($product_Id[$key]) && $product->id == $product_Id[$key] ? 'selected' : '' }}>{{ $product->abb_description }}</option>
@@ -26,20 +26,28 @@
 
 <script>
     $(document).ready(function() {
-        window.initSelectProductDrop=()=>{
-                $('.js-example-basic-single{{ $key }}').select2({
-                    placeholder: 'Select a Product',
-                    allowClear: true});
-            }
-            initSelectProductDrop();
-            $('.js-example-basic-single{{ $key }}').on('change', function (e) {
-                console.log('sf' ,e.target.value);
-                livewire.emit('selectedProductItem', e.target.value)
+        window.initSelectProductDrop = () => {
+            $('.js-example-basic-single{{ $key }}').select2({
+                placeholder: 'Select a Product'
+                , allowClear: true
             });
-            window.livewire.on('select2',()=>{
-                initSelectProductDrop();
-            });
+ 
 
+        }
+        initSelectProductDrop();
+        $('.js-example-basic-single{{ $key }}').on('change', function(e) {
+            console.log('sf', e.target.value);
+            livewire.emit('selectedProductItem', e.target.value)
         });
+        window.livewire.on('select2', () => {
+            initSelectProductDrop();
+        });
+
+        $('.js-example-basic-single{{ $key }}').on('select2:open', function(e) {
+            document.querySelector('.select2-search__field').focus();
+        });
+
+       
+    });
 
 </script>
