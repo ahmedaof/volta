@@ -28,6 +28,7 @@ return array(
     'App\\Http\\Livewire\\PanelsType' => $baseDir . '/app/Http/Livewire/PanelsType.php',
     'App\\Http\\Livewire\\Plans' => $baseDir . '/app/Http/Livewire/Plans.php',
     'App\\Http\\Livewire\\Project' => $baseDir . '/app/Http/Livewire/Project.php',
+    'App\\Http\\Livewire\\ProjectDetails' => $baseDir . '/app/Http/Livewire/ProjectDetails.php',
     'App\\Http\\Livewire\\ProjectsShow' => $baseDir . '/app/Http/Livewire/ProjectsShow.php',
     'App\\Http\\Livewire\\User' => $baseDir . '/app/Http/Livewire/User.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',

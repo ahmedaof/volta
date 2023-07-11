@@ -23,13 +23,18 @@
                 <th scope="col">Project Name</th>
                 {{-- offer_number --}}
                 <th scope="col">Offer Number</th>
+                {{-- version --}}
+                <th scope="col">Version</th>
                 {{-- type --}}
+
                 <th scope="col">Project type</th>
                 <th scope="col">Project Note</th>
+                {{-- discount --}}
+                <th scope="col">Discount</th>
+                {{-- status --}}
                 <th scope="col">Project Status</th>
+
                 <th scope="col">Customer</th>
-                <th scope="col">Project Created</th>
-                <th scope="col">Project Updated</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -37,14 +42,13 @@
             @foreach ($projects as $project)
                 <tr>
                     <td>{{ $project?->name }}</td>
-                    <td>{{ 'TECH :(' . $project?->offer_number . ')' }} {!!   $project->offer_fin ?  '<br>' . 'COM : ( ' . $project->offer_fin . ')' : ''  !!}</td>
+                    <td>{{  $project?->offer_number  }} {!!   $project->offer_fin ?  '<br>'. $project->offer_fin  : ''  !!}</td>
+                    <td>{{ $project?->version ?? 'R00' }}</td>
                     <td>{{ $project?->type }}</td>
                     <td>{{ $project?->notes }}</td>
-
+                    <td>{{ $project?->discount }}</td>
                     <td>{{ $project?->status }}</td>
                     <td>{{ $project?->customer?->name }}</td>
-                    <td>{{ $project?->created_at }}</td>
-                    <td>{{ $project?->updated_at }}</td>
                     <td>
                         <button wire:click="delete({{ $project?->id }})" class="btn btn-sm btn-danger">Delete</button>
                         {{-- a href to show --}}
@@ -71,6 +75,8 @@
                         <button wire:click="factory({{ $project?->id }})" class="btn btn-sm btn-dark">Factory</button>
 
                         @endif
+
+                        <button wire:click="Edit({{ $project?->id }})" class="btn btn-sm btn-danger">Edit</button>
                         
                     </td>
                 </tr>
@@ -114,4 +120,5 @@
         </script>
     
     @include('livewire.main-projects.choose')
+    @include('livewire.main-projects.edit')
 </div>

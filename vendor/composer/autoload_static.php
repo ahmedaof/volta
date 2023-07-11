@@ -700,6 +700,7 @@ class ComposerStaticInit7a75ad795e5267dff54a79941f9fb134
         'App\\Http\\Livewire\\PanelsType' => __DIR__ . '/../..' . '/app/Http/Livewire/PanelsType.php',
         'App\\Http\\Livewire\\Plans' => __DIR__ . '/../..' . '/app/Http/Livewire/Plans.php',
         'App\\Http\\Livewire\\Project' => __DIR__ . '/../..' . '/app/Http/Livewire/Project.php',
+        'App\\Http\\Livewire\\ProjectDetails' => __DIR__ . '/../..' . '/app/Http/Livewire/ProjectDetails.php',
         'App\\Http\\Livewire\\ProjectsShow' => __DIR__ . '/../..' . '/app/Http/Livewire/ProjectsShow.php',
         'App\\Http\\Livewire\\User' => __DIR__ . '/../..' . '/app/Http/Livewire/User.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',

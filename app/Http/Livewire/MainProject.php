@@ -19,7 +19,7 @@ class MainProject extends Component
 
     ];
 
-    public $searchTerm, $project_id,  $chooseModel = false , $project_type;
+    public $searchTerm, $project_id,$name,$discount , $notes ,  $chooseModel = false , $project_type,$editModel = false;
 
     public function download($project_id)
     {
@@ -32,7 +32,7 @@ class MainProject extends Component
 
         return response()->streamDownload(function ()  use ($pdfContent) {
             $pdfContent->stream('technical-offer');
-        }, $project->offer_number . '.pdf');
+        }, 'TECH -- ' . $project->offer_number . '.pdf');
     }
 
     // downloadFinantial
@@ -67,7 +67,7 @@ class MainProject extends Component
 
         return response()->streamDownload(function ()  use ($pdfContent) {
             $pdfContent->stream('commercial-offer');
-        }, $project->offer_number . '.pdf');
+        }, 'COMM  -- ' . $project->offer_number . '.pdf');
 
 
     }
@@ -159,6 +159,43 @@ class MainProject extends Component
         session()->flash('message', 'Project Deleted Successfully.');
     }
 
+
+    public function Edit($id)
+    {
+        $this->project_id = $id;
+        $project = ModelsMainProject::find($this->project_id);
+        $this->name = $project->name;
+        $this->discount = $project->discount;
+        $this->notes = $project->notes;
+        $this->editModel = true;
+    }
+
+    public function SaveProject(){
+        $this->validate([
+            'name' => 'required',
+            'discount' => 'required',
+            'notes' => 'required'
+        ]);
+        $project = ModelsMainProject::find($this->project_id);
+        $project->name = $this->name;
+        
+        if($this->discount != $project->discount){
+             
+            if($project->version == null){
+                $project->version = 'R00';
+            }
+            $version =  substr($project->version, 1);
+           
+            $version = $version + 1;
+            $project->version = 'R0' . $version;
+        }
+        $project->notes = $this->notes;
+        $project->discount = $this->discount;
+        $project->save();
+        $this->editModel = false;
+        // flash
+        session()->flash('message', 'Project Updated Successfully.');
+    }
     public function render()
     {
         $projects = ModelsMainProject::where('name', 'like', '%' . $this->searchTerm . '%')

@@ -220,6 +220,13 @@
                 }
             }
         }
+        $discount = 0;
+
+        if($project->discount != 0){
+
+            $discount = $total * ($project->discount / 100);
+            $total -= $discount;
+        }
             @endphp
             <tbody>
                 <tr>
@@ -234,9 +241,24 @@
                     <td>{{ $total * ($panel->panel_quantity )}}</td>
                 </tr>
                 <tr>
+                    @if($project_type == 'a')
                     <td colspan="4" style="text-align: center">‫‪14%‬‬ ‫‪TAXES‬‬</td>
-                    <td>{{ $total * ($panel->panel_quantity ) - ($total * $panel->panel_quantity  * .14)}}</td>
+                    @else
+                    <td colspan="4" style="text-align: center">بدون ضريبة</td>
+
+                    @endif
+                    <td>{{ $total }}</td>
+
                 </tr>
+
+                @if($discount != 0)
+                    
+                
+                <tr>
+                    <td colspan="4" style="text-align: center">Discount</td>
+                    <td>{{ $discount }}</td>
+                </tr>
+                @endif
             </tbody>
 
 
