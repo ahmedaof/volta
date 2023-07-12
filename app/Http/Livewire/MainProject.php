@@ -19,7 +19,7 @@ class MainProject extends Component
 
     ];
 
-    public $searchTerm, $project_id,$name,$discount , $notes ,  $chooseModel = false , $project_type,$editModel = false;
+    public $searchTerm, $period , $before_period , $after_period, $project_id,$name,$discount , $notes ,  $chooseModel = false , $project_type,$editModel = false;
 
     public function download($project_id)
     {
@@ -48,7 +48,7 @@ class MainProject extends Component
     // closemodal
     public function closemodal()
     {
-        $this->chooseModel = false;
+        return redirect(request()->header('Referer'));
     }
 
 
@@ -167,6 +167,9 @@ class MainProject extends Component
         $this->name = $project->name;
         $this->discount = $project->discount;
         $this->notes = $project->notes;
+        $this->period = $project->period;
+        $this->before_period = $project->before_period;
+        $this->after_period = $project->after_period;
         $this->editModel = true;
     }
 
@@ -191,6 +194,9 @@ class MainProject extends Component
         }
         $project->notes = $this->notes;
         $project->discount = $this->discount;
+        $project->period = $this->period;
+        $project->before_period = $this->before_period;
+        $project->after_period = $this->after_period;
         $project->save();
         $this->editModel = false;
         // flash

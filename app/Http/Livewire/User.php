@@ -77,7 +77,7 @@ class User extends Component
         ModelsUser::find($id)->delete();
     }
 
-    public function closeModal(){
+    public function closemodal(){
         return redirect(request()->header('Referer'));
         $this->createModal = false ;
         $this->updateModal = false ;

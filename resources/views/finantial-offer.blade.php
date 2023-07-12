@@ -280,10 +280,10 @@
                 <td class="borderTest" style="text-align: right;"> * العرض سار لمدة اسبوع من تاريخه او لحين تغيير الاسعار</td>
             </tr>
             <tr>
-                <td class="borderTest" style="text-align: right;">* شروط الدفع 50 % من اجمالى السعر دفعة مقدمة & 50 % دفعه نهائيه عند الاستلام</td>
+                <td class="borderTest" style="text-align: right;">* شروط الدفع {{ $project->before_period }} % من اجمالى السعر دفعة مقدمة & {{ $project->after_period }} % دفعه نهائيه عند الاستلام</td>
             </tr>
             <tr>
-                <td class="borderTest" style="text-align: right;">* مدة التوريد : 2 يوم من تاريخ استلام الدفعه او الاعتماد ايهما لاحق</td>
+                <td class="borderTest" style="text-align: right;">* مدة التوريد :{{ $project->period }} من تاريخ استلام الدفعه او الاعتماد ايهما لاحق</td>
             </tr>
         </table>
     </div>

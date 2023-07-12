@@ -24,6 +24,28 @@
 
                 </div>
 
+                {{-- period --}}
+                <div class="form-group">
+                    <label for="period">مدة التوريد</label>
+                    <input type="text" wire:model="period" class="form-control" id="period" placeholder="Enter Project Period">
+                    @error('period') <span class="text-danger">{{ $message }}</span>@enderror
+                </div>
+
+                {{-- after_period --}}
+
+                <div class="form-group">
+                    <label for="after_period"> نسبه المؤخر</label>
+                    <input type="text" wire:model="after_period" class="form-control" id="after_period" placeholder="Enter Project After Period">
+                    @error('after_period') <span class="text-danger">{{ $message }}</span>@enderror
+                </div>
+
+                {{-- before_period --}}
+                <div class="form-group">
+                    <label for="before_period">نسبة المقدم</label>
+                    <input type="text" wire:model="before_period" class="form-control" id="before_period" placeholder="Enter Project Before Period">
+                    @error('before_period') <span class="text-danger">{{ $message }}</span>@enderror
+
+                </div>
                 {{-- discount --}}
 
                 <div class="form-group">
