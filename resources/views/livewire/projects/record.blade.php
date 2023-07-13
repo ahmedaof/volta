@@ -27,6 +27,10 @@
 <script>
     $(document).ready(function() {
         window.initSelectProductDrop = () => {
+            console.log('sd');
+            $('.js-example-basic-single{{ $key }}').on('select2:open', function(e) {
+            document.querySelector('.select2-search__field').focus();
+        });
             $('.js-example-basic-single{{ $key }}').select2({
                 placeholder: 'Select a Product'
                 , allowClear: true
@@ -43,9 +47,7 @@
             initSelectProductDrop();
         });
 
-        $('.js-example-basic-single{{ $key }}').on('select2:open', function(e) {
-            document.querySelector('.select2-search__field').focus();
-        });
+    
 
        
     });
