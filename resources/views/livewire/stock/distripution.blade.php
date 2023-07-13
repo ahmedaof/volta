@@ -71,7 +71,7 @@
                 <td>{{ $distribution->family?->name ?? 'NA'}}</td>
                 <td>{{ $distribution->quantity }}</td>
                 <td>{{ $distribution->abb_price }}</td>
-                <td>{{ $distribution->abb_discount ?? 0}}</td>
+                <td>{{ $distribution->family->discount ?? 0}}</td>
                 <td>
                     <button wire:click="edit({{ $distribution->id }})" class="btn btn-primary btn-sm">Edit</button>
                     <button wire:click="delete({{ $distribution->id }})" class="btn btn-danger btn-sm">Delete</button>
