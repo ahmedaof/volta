@@ -81,11 +81,15 @@ class PanelDetails extends Component
         return redirect(request()->header('Referer'));
     }
 
-    public function selectedProductItem($item)
+    public function selectedProductItem($item,$key)
     {
+        
+        //  get first char after .
+        $firstChar = substr($key, strpos($key, ".") + 1);
+
+
         if ($item) {
-            $product = DistriputionProduct::where('id' , $item  )->first();
-            $this->product_Id[$this->i] = $product->id;
+            $this->product_Id[$firstChar] = $item;
         } else
             $product = null;
     }
@@ -146,7 +150,7 @@ class PanelDetails extends Component
             'panel_id' => $this->panel_id,
         ]);
         foreach ($this->product_Id as $key => $value) {
-            $tab->distripution_product()->attach([$value => ['quantity' => $this->quantity[$key - 1]]]);
+            $tab->distripution_product()->attach([$value => ['quantity' => $this->quantity[$key]]]);
         }
         $this->closemodal();
 

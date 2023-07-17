@@ -40,8 +40,8 @@
         }
         initSelectProductDrop();
         $('.js-example-basic-single{{ $key }}').on('change', function(e) {
-            console.log('sf', e.target.value);
-            livewire.emit('selectedProductItem', e.target.value)
+            console.log('sf', e.target.id);
+            livewire.emit('selectedProductItem', e.target.value, e.target.id)
         });
         window.livewire.on('select2', () => {
             initSelectProductDrop();
