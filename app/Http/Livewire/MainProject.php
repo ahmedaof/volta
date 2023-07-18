@@ -19,7 +19,7 @@ class MainProject extends Component
 
     ];
 
-    public $searchTerm, $period , $before_period , $after_period, $project_id,$name,$discount , $notes ,  $chooseModel = false , $project_type,$editModel = false;
+    public $searchTerm, $from,$to,$period , $before_period , $after_period, $project_id,$name,$discount , $notes ,  $chooseModel = false , $project_type,$editModel = false;
 
     public function download($project_id)
     {
@@ -204,9 +204,17 @@ class MainProject extends Component
     }
     public function render()
     {
-        $projects = ModelsMainProject::where('name', 'like', '%' . $this->searchTerm . '%')
+        if($this->from != null && $this->to != null && $this->searchTerm != null){
+        
+        $projects = ModelsMainProject::whereBetween('created_at', [$this->from, $this->to])->where('name', 'like', '%' . $this->searchTerm . '%')
             ->orWhere('offer_number', 'like', '%' . $this->searchTerm . '%')
+            // where customer in relation with mainprojects
+            ->orWhereHas('customer', function ($query) {
+                $query->where('name', 'like', '%' . $this->searchTerm . '%');
+            })
             ->get();
+        }else
+            $projects = [];
         return view('livewire.main-projects.index', compact('projects'))->extends('adminlte::page');
     }
 }

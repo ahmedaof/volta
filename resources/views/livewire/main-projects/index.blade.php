@@ -14,8 +14,19 @@
     {{-- show projects table --}}
 
     {{-- search --}}
-    <div class="form-group">
-        <input type="text" class="form-control" placeholder="Search" wire:model="searchTerm" />
+    <div class="form-group row mt-3">
+        <input type="text" class="form-control col-md-4" placeholder="Search" wire:model="searchTerm" />
+       
+        {{-- filtedDate from to --}}
+        <div class="col-md-4">
+            <input type="date" class="form-control" wire:model="from" />
+          
+        </div>
+        <div class="col-md-4">
+            <input type="date" class="form-control" wire:model="to" />
+          
+        </div>
+
     </div>
     <table class="table table-striped">
         <thead>
