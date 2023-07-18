@@ -204,7 +204,7 @@ class MainProject extends Component
     }
     public function render()
     {
-        if($this->from != null && $this->to != null && $this->searchTerm != null){
+        if($this->from != null && $this->to != null){
         
         $projects = ModelsMainProject::whereBetween('created_at', [$this->from, $this->to])->where('name', 'like', '%' . $this->searchTerm . '%')
             ->orWhere('offer_number', 'like', '%' . $this->searchTerm . '%')
